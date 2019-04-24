@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">HoraireEcole</string>
+
+    <!-- Boutons -->
+    <string name="btnConfirm">Confirmer</string>
+    <string name="btnCancel">Annuler</string>
+    <string name="btnAdd">Ajouter</string>
+    <string name="btnEdit">Modifier</string>
+    <string name="btnDelete">Supprimer</string>
+    <string name="btnFinalize">Finaliser</string>
+    <string name="btnDesactiver">Désactiver</string>
+    <string name="btnReturn">Retour</string>
+
+    <!-- MenuOptions -->
+    <string name="action_edit_password">Changer de mot de passe</string>
+    <string name="action_logout">Se Déconnecter</string>
+
+    <!-- Login -->
+    <string name="login_username">Numéro d\'employé</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="btnlogin_connection">Se Connecter</string>
+
+    <!-- AdminCenter -->
+    <string name="admin_horaireview">Voir les horaires</string>
+    <string name="admin_horairecreation">Créer les plages-horaires</string>
+    <string name="admin_employeview">Voir les employés</string>
+
+    <!-- Horaire Informations -->
+    <string name="etDate">Date : </string>
+    <string name="etTimeBegin">Heure de début : </string>
+    <string name="etTimeEnd">Heure de fin : </string>
+    <string name="etEmploye">Nombre d\'employé : </string>
+    <string name="etListeEmploye">Employés dans cette plage : </string>
+    <string name="etPlace">Endroit du travail : </string>
+    <string name="etDescription">Description du travail : </string>
+
+    <!-- User Informations -->
+    <string name="etNoEmp">No. Employé : </string>
+    <string name="etNameEmp">Nom d\'employé : </string>
+    <string name="etEmailEmp">Courriel de l\'employé : </string>
+    <string name="etAncienneteEmp">Niveau d\'ancienneté : </string>
+    <string name="etListWork">Liste des plages de la semaine : </string>
+
+    <!-- UserCenter -->
+    <string name="user_horaireview">Voir son horaire</string>
+    <string name="user_horairechoice">Choisir son horaire</string>
+    <string name="user_admincontact">Contacter l\'administrateur</string>
+</resources>
