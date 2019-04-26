@@ -46,6 +46,7 @@ public class HoraireChoiceActivity extends ListActivity {
             View.OnClickListener ocl = new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
+                    // changer le nombre d'heure choisi (R.id.timeInfo.setText(nbrHeure))
                     ImageView checkbox= findViewById(R.id.checkBox);
                     if (checkbox.getDrawable().equals(R.drawable.czklow)) {
                         checkbox.setImageResource(R.drawable.czkmedium);
