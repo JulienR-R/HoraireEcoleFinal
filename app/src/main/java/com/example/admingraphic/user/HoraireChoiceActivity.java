@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.admingraphic.R;
@@ -22,6 +23,7 @@ public class HoraireChoiceActivity extends ListActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.user_horairechoice_item, R.id.infos, values);
         setListAdapter(adapter);
+
         final Button btnConfirm = (Button) findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -40,11 +42,26 @@ public class HoraireChoiceActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        //tag the checkbox, the rest is for details
-        String item = (String) getListAdapter().getItem(position);
-        Intent intentEmployeDetail = new Intent(this, EmployeDetailActivity.class);
-        //put extra to get the employe
-        startActivity(intentEmployeDetail);
+        if(v.getId() == R.id.checkBox){
+            View.OnClickListener ocl = new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    ImageView checkbox= findViewById(R.id.checkBox);
+                    if (checkbox.getDrawable().equals(R.drawable.czklow)) {
+                        checkbox.setImageResource(R.drawable.czkmedium);
+                    } else if (checkbox.getDrawable().equals(R.drawable.czkmedium)) {
+                        checkbox.setImageResource(R.drawable.czkhigh);
+                    } else if (checkbox.getDrawable().equals(R.drawable.czkhigh)) {
+                        checkbox.setImageResource(R.drawable.czklow);
+                    }
+                }
+            };
+        } else {
+            String item = (String) getListAdapter().getItem(position);
+            Intent intentEmployeDetail = new Intent(this, EmployeDetailActivity.class);
+            //put extra to get the employe with item
+            startActivity(intentEmployeDetail);
+        }
     }
 
     public void onBackPressed() {

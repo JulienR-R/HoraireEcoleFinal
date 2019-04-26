@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.admingraphic.R;
 import com.example.admingraphic.admin.AdminHoraireViewActivity;
@@ -69,7 +70,7 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_edit_password:
-                // edit password popup
+                editPassword();
                 break;
             case R.id.action_logout:
                 notifyLogout();
@@ -95,5 +96,21 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
                         // connection key down and move to loginpage
                     }
                 }).create().show();
+    }
+
+    public void editPassword(){
+        final EditText newpassword = new EditText(this);
+        new AlertDialog.Builder(this)
+                .setTitle("Changement de mot de passe")
+                .setMessage("Écrire un nouveau mot de passe pour remplacer l'ancien")
+            .setNegativeButton(R.string.btnCancel, null)
+            .setView(newpassword)
+            .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // si password n'est pas le même qu'actuel et qu'il n'est pas vide
+                    // changer password dans la base de donnée
+                    // sinon, toast expliquant l'erreur (Tu as oublié de mettre un mot de passe)
+                }
+            }).create().show();
     }
 }
