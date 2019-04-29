@@ -22,8 +22,8 @@ public class EmployeDetailActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_employeview_detailview);
-        final Button btnDesactivate = (Button) findViewById(R.id.btnDesactivate);
-        btnDesactivate.setOnClickListener(new View.OnClickListener() {
+        final Button btnReturn = (Button) findViewById(R.id.btnDesactivate);
+        btnReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 notifyConfirm();
             }
@@ -33,7 +33,6 @@ public class EmployeDetailActivity extends AppCompatActivity{
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Détails de l'employé");
     }
@@ -45,11 +44,11 @@ public class EmployeDetailActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home:
+            case android.R.id.home:
                 onBackPressed();
-                break;
+                return true;
+            default: return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void notifyConfirm() {

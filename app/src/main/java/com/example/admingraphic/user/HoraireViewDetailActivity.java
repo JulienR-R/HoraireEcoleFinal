@@ -22,7 +22,7 @@ public class HoraireViewDetailActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_horaireview_detailview);
-        final Button btnReturn = (Button) findViewById(R.id.btnReturn);
+        final Button btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onBackPressed();
@@ -33,7 +33,6 @@ public class HoraireViewDetailActivity extends AppCompatActivity{
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Détails de la plage-horaire");
     }
@@ -45,10 +44,11 @@ public class HoraireViewDetailActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home:
+            case android.R.id.home:
                 onBackPressed();
-                break;
+                return true;
+            default:
+                return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 }

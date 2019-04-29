@@ -19,6 +19,9 @@
     <string name="login_username">Numéro d\'employé</string>
     <string name="login_password">Mot de passe</string>
     <string name="btnlogin_connection">Se Connecter</string>
+    <string name="admin">Admin</string>
+    <string name="client">Client</string>
+
 
     <!-- AdminCenter -->
     <string name="admin_horaireview">Voir les horaires</string>

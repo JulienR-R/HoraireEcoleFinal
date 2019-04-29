@@ -74,17 +74,17 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
         switch (item.getItemId()){
             case R.id.action_edit_password:
                 editPassword();
-                break;
+                return true;
             case R.id.action_logout:
                 notifyLogout();
-                break;
+                return true;
+            default:
+                return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setTitle("Menu Principal Administrateur");
     }

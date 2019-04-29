@@ -9,13 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".user.UserCenterActivity"></activity>
+        <activity android:name=".user.UserHoraireViewActivity"/>
+        <activity android:name=".user.HoraireViewDetailActivity"/>
+        <activity android:name=".user.HoraireChoiceActivity"/>
+
+        <activity android:name=".admin.AdminCenterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".admin.AdminHoraireViewActivity"/>
+        <activity android:name=".admin.EmployeDetailActivity"/>
+        <activity android:name=".admin.EmployeViewActivity"/>
+        <activity android:name=".admin.horairecreation.HoraireCreationActivity"/>
+        <activity android:name=".admin.horairecreation.HoraireCreationAddActivity"/>
+        <activity android:name=".admin.horairecreation.HoraireCreationDetailActivity"/>
+        <activity android:name=".admin.horairecreation.HoraireCreationEditActivity"/>
     </application>
 
 </manifest>
