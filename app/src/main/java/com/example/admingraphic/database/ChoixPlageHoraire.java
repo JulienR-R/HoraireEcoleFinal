@@ -1,0 +1,97 @@
+package com.example.admingraphic.database;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "choixPlageHoraire", foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "_id",
+        childColumns = "userId", onDelete = CASCADE),
+        @ForeignKey(entity = PlageHoraire.class, parentColumns = "_id",
+                childColumns = "plageHoraireId", onDelete = CASCADE)})
+public class ChoixPlageHoraire implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    private long _id;
+    @ColumnInfo(name = "userId")
+    long userId;
+    @ColumnInfo(name = "plageHoraireId")
+    long plageHoraireId;
+    @ColumnInfo(name = "priority")
+    int priority;
+
+    //public ChoixPlageHoraire(){}
+
+    public ChoixPlageHoraire(long userId, long plageHoraireId) {
+        setUserId(userId);
+        setPlageHoraireId(plageHoraireId);
+    }
+
+    protected ChoixPlageHoraire(Parcel in) {
+        _id = in.readLong();
+        userId = in.readLong();
+        plageHoraireId = in.readLong();
+        priority = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(_id);
+        dest.writeLong(userId);
+        dest.writeLong(plageHoraireId);
+        dest.writeInt(priority);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ChoixPlageHoraire> CREATOR = new Creator<ChoixPlageHoraire>() {
+        @Override
+        public ChoixPlageHoraire createFromParcel(Parcel in) {
+            return new ChoixPlageHoraire(in);
+        }
+
+        @Override
+        public ChoixPlageHoraire[] newArray(int size) {
+            return new ChoixPlageHoraire[size];
+        }
+    };
+
+    public long get_id() {
+        return _id;
+    }
+
+    public void set_id(long _id) {
+        this._id = _id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getPlageHoraireId() {
+        return plageHoraireId;
+    }
+
+    public void setPlageHoraireId(long plageHoraireId) {
+        this.plageHoraireId = plageHoraireId;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+}
