@@ -71,17 +71,17 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
         switch (item.getItemId()){
             case R.id.action_edit_password:
                 editPassword();
-                return true;
+                break;
             case R.id.action_logout:
                 notifyLogout();
-                return true;
-            default:
-                return false;
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setTitle("Menu Principal");
     }

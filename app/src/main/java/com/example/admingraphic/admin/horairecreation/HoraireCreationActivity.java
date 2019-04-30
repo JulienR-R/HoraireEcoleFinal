@@ -1,51 +1,39 @@
 package com.example.admingraphic.admin.horairecreation;
 
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.admingraphic.R;
 
+import java.util.List;
+
 /**
  * Created by 201663676 on 2019-04-23.
  */
 
-public class HoraireCreationActivity extends AppCompatActivity implements View.OnClickListener{
+public class HoraireCreationActivity extends ListActivity implements View.OnClickListener{
     Toolbar toolbar;
+    List<String> listPlageTitle;
     Button btnFinalizeHoraire, btnAddHoraire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ListView list;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_horairecreation_list_view);
-        list = findViewById(R.id.list_creationplages);
-        String[] values = new String[] { "George", "Mickael", "Robert",
-                "Jean", "Elizabeth", "Thérèse" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.admin_horairecreation_list_item, R.id.itemPlageTitle_creation, values);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) parent.getItemAtPosition(position);
-                Intent intentHoraireDetail = new Intent(HoraireCreationActivity.this, HoraireCreationDetailActivity.class);
-                //put extra the horaire to get detail
-                startActivity(intentHoraireDetail);
-            }
-        });
-
+        setContentView(R.layout.admin_horaireview_view);
         ButtonAdminHoraireCreation();
+        //get the listPlageTitle
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.admin_horairecreation_listview, R.id.recyclerview_plages, listPlageTitle);
+        setListAdapter(adapter);
         setToolbar();
     }
 
@@ -54,6 +42,14 @@ public class HoraireCreationActivity extends AppCompatActivity implements View.O
         btnAddHoraire.setOnClickListener(this);
         btnFinalizeHoraire = findViewById(R.id.btnFinalize);
         btnFinalizeHoraire.setOnClickListener(this);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        String item = (String) getListAdapter().getItem(position);
+        Intent intentDetailHoraire = new Intent(this, HoraireCreationDetailActivity.class);
+        //put extra the horaire to get detail
+        startActivity(intentDetailHoraire);
     }
 
     @Override
@@ -66,7 +62,7 @@ public class HoraireCreationActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.btnAdd:
-                Intent intentAddHoraire = new Intent(HoraireCreationActivity.this, HoraireCreationAddActivity.class);
+                Intent intentAddHoraire = new Intent(this, HoraireCreationAddActivity.class);
                 startActivity(intentAddHoraire);
                 break;
         }
@@ -74,8 +70,7 @@ public class HoraireCreationActivity extends AppCompatActivity implements View.O
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Liste des plages de la prochaine semaine");
+        setTitle("Liste des plages créées pour la prochaine semaine");
     }
 
     public void onBackPressed() {
@@ -86,11 +81,11 @@ public class HoraireCreationActivity extends AppCompatActivity implements View.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
+            case R.id.home:
                 onBackPressed();
-                return true;
-            default: return false;
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void notifyConfirm() {

@@ -46,9 +46,8 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                String item = (String) parent.getAdapter().getItem(childPosition);
-                Intent intentEmployeDetail = new Intent(AdminHoraireViewActivity.this, EmployeDetailActivity.class);
-                //put extra to get the employe with item
+                Intent intentEmployeDetail = new Intent(getBaseContext(), EmployeDetailActivity.class);
+                //put extra to get the employe
                 startActivity(intentEmployeDetail);
                 return false;
             }
@@ -57,11 +56,14 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Horaire de la semaine");
     }
 
-    public void onBackPressed() {finish(); }
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

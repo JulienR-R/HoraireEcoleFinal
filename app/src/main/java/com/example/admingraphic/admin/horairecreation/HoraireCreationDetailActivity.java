@@ -43,7 +43,7 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
                 break;
 
             case R.id.btnEditHoraire:
-                Intent intentEditHoraire = new Intent(HoraireCreationDetailActivity.this, HoraireCreationEditActivity.class);
+                Intent intentEditHoraire = new Intent(this, HoraireCreationEditActivity.class);
                 //put extra the horaire to edit
                 startActivity(intentEditHoraire);
                 break;
@@ -52,6 +52,7 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Détails de la plage-horaire");
     }
@@ -63,11 +64,11 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
+            case R.id.home:
                 onBackPressed();
-                return true;
-            default: return false;
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void notifyConfirm() {

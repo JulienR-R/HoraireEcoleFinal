@@ -33,6 +33,7 @@ public class EmployeDetailActivity extends AppCompatActivity{
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Détails de l'employé");
     }

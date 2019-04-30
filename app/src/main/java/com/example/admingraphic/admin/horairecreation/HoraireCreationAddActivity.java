@@ -51,22 +51,23 @@ public class HoraireCreationAddActivity extends AppCompatActivity  implements Vi
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Création de plage-horaire");
-    }
-
-    public void onBackPressed() {
-        notifyCancel();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
+            case R.id.home:
                 onBackPressed();
-                return true;
-            default: return false;
+                break;
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackPressed() {
+        notifyCancel();
     }
 
     public void notifyCancel() {
