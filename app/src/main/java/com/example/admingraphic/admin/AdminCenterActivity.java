@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.example.admingraphic.R;
 import com.example.admingraphic.admin.horairecreation.HoraireCreationActivity;
+import com.example.admingraphic.admin.horairefinal.HoraireFinalActivity;
 
 /**
  * Created by 201663676 on 2019-04-23.
@@ -21,21 +22,23 @@ import com.example.admingraphic.admin.horairecreation.HoraireCreationActivity;
 
 public class AdminCenterActivity  extends AppCompatActivity implements View.OnClickListener{
     Toolbar toolbar;
-    Button btnAdminHoraireView, btnAdminHoraireCreation, btnAdminEmployeView;
+    Button btnAdminHoraireView, btnAdminHoraireCreation, btnAdminEmployeView, btnAdminHoraireFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_page);
+        setContentView(R.layout.admin_center);
         ButtonAdminCenter();
         setToolbar();
     }
 
     public void ButtonAdminCenter(){
-        btnAdminHoraireView = findViewById(R.id.admin_horaireview);
-        btnAdminHoraireView.setOnClickListener(this);
         btnAdminHoraireCreation = findViewById(R.id.admin_horairecreation);
         btnAdminHoraireCreation.setOnClickListener(this);
+        btnAdminHoraireFinal = findViewById(R.id.admin_horairefinal);
+        btnAdminHoraireFinal.setOnClickListener(this);
+        btnAdminHoraireView = findViewById(R.id.admin_horaireview);
+        btnAdminHoraireView.setOnClickListener(this);
         btnAdminEmployeView = findViewById(R.id.admin_employeview);
         btnAdminEmployeView.setOnClickListener(this);
     }
@@ -44,18 +47,23 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.admin_horaireview:
-                Intent intentHoraireView = new Intent(this, AdminHoraireViewActivity.class);
+                Intent intentHoraireView = new Intent(AdminCenterActivity.this, AdminHoraireViewActivity.class);
                 startActivity(intentHoraireView);
                 break;
 
             case R.id.admin_horairecreation:
-                Intent intentHoraireCreation = new Intent(this, HoraireCreationActivity.class);
+                Intent intentHoraireCreation = new Intent(AdminCenterActivity.this, HoraireCreationActivity.class);
                 startActivity(intentHoraireCreation);
                 break;
 
             case R.id.admin_employeview:
-                Intent intentEmployeView = new Intent(this, EmployeViewActivity.class);
+                Intent intentEmployeView = new Intent(AdminCenterActivity.this, EmployeViewActivity.class);
                 startActivity(intentEmployeView);
+                break;
+
+            case R.id.admin_horairefinal:
+                Intent intentHoraireFinal = new Intent(AdminCenterActivity.this, HoraireFinalActivity.class);
+                startActivity(intentHoraireFinal);
                 break;
 
             default:
@@ -74,25 +82,25 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
         switch (item.getItemId()){
             case R.id.action_edit_password:
                 editPassword();
-                break;
+                return true;
             case R.id.action_logout:
                 notifyLogout();
-                break;
+                return true;
+            default:
+                return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setTitle("Menu Principal Administrateur");
+        setTitle(R.string.title_admin_center);
     }
 
     public void notifyLogout() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir vous déconnecter?")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_logout)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -104,8 +112,8 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
     public void editPassword(){
         final EditText newpassword = new EditText(this);
         new AlertDialog.Builder(this)
-                .setTitle("Changement de mot de passe")
-                .setMessage("Écrire un nouveau mot de passe pour remplacer l'ancien")
+                .setTitle(R.string.title_edit_password)
+                .setMessage(R.string.message_edit_password)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setView(newpassword)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {

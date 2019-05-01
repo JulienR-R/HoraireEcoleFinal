@@ -71,25 +71,25 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
         switch (item.getItemId()){
             case R.id.action_edit_password:
                 editPassword();
-                break;
+                return true;
             case R.id.action_logout:
                 notifyLogout();
-                break;
+                return true;
+            default:
+                return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setTitle("Menu Principal");
+        setTitle(R.string.title_user_center);
     }
 
     public void notifyLogout() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir vous déconnecter?")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_logout)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -101,8 +101,8 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
     public void editPassword(){
         final EditText newpassword = new EditText(this);
         new AlertDialog.Builder(this)
-                .setTitle("Changement de mot de passe")
-                .setMessage("Écrire un nouveau mot de passe pour remplacer l'ancien")
+                .setTitle(R.string.title_edit_password)
+                .setMessage(R.string.message_edit_password)
             .setNegativeButton(R.string.btnCancel, null)
             .setView(newpassword)
             .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {

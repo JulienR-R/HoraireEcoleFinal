@@ -43,7 +43,7 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
                 break;
 
             case R.id.btnEditHoraire:
-                Intent intentEditHoraire = new Intent(this, HoraireCreationEditActivity.class);
+                Intent intentEditHoraire = new Intent(HoraireCreationDetailActivity.this, HoraireCreationEditActivity.class);
                 //put extra the horaire to edit
                 startActivity(intentEditHoraire);
                 break;
@@ -52,9 +52,8 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Détails de la plage-horaire");
+        setTitle(R.string.title_admin_horairecreation_detail);
     }
 
     public void onBackPressed() {
@@ -64,17 +63,17 @@ public class HoraireCreationDetailActivity extends AppCompatActivity  implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home:
+            case android.R.id.home:
                 onBackPressed();
-                break;
+                return true;
+            default: return false;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void notifyConfirm() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir supprimer cette plage à l'horaire?")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_horaire_delete)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

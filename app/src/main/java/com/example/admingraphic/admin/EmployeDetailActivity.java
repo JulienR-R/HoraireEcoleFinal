@@ -33,9 +33,8 @@ public class EmployeDetailActivity extends AppCompatActivity{
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Détails de l'employé");
+        setTitle(R.string.title_admin_employedetail);
     }
 
     public void onBackPressed() {
@@ -54,8 +53,8 @@ public class EmployeDetailActivity extends AppCompatActivity{
 
     public void notifyConfirm() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir supprimer cet employé?")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_employe_delete)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

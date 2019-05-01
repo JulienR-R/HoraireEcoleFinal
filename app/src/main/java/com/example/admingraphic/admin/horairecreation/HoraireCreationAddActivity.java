@@ -51,29 +51,28 @@ public class HoraireCreationAddActivity extends AppCompatActivity  implements Vi
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Création de plage-horaire");
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+        setTitle(R.string.title_admin_horairecreation_add);
     }
 
     public void onBackPressed() {
         notifyCancel();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default: return false;
+        }
+    }
+
     public void notifyCancel() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir annuler l'ajout de cette plage? Votre progression sera perdu.")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_horairecreation_add_cancel)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -84,8 +83,8 @@ public class HoraireCreationAddActivity extends AppCompatActivity  implements Vi
 
     public void notifyConfirm() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmation?")
-                .setMessage("Êtes-vous sure de vouloir ajouter cette plage à l'horaire?")
+                .setTitle(R.string.title_confirmation)
+                .setMessage(R.string.message_horairecreation_add_confirm)
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

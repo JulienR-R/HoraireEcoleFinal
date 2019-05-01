@@ -16,11 +16,12 @@ import com.example.admingraphic.user.HoraireViewDetailActivity;
 
 public class EmployeViewActivity extends AppCompatActivity {
     Toolbar toolbar;
+
     public void onCreate(Bundle savedInstanceState) {
         ListView list;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_employeview_view);
-        list = findViewById(R.id.list_plages);
+        list = findViewById(R.id.list_employes);
         String[] values = new String[] { "George", "Mickael", "Robert",
                 "Jean", "Elizabeth", "Thérèse" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -28,7 +29,7 @@ public class EmployeViewActivity extends AppCompatActivity {
 
     list.setAdapter(adapter);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String itemClicked = (String) parent.getItemAtPosition(position);
@@ -42,9 +43,8 @@ public class EmployeViewActivity extends AppCompatActivity {
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Liste des employés");
+        setTitle(R.string.title_admin_employe);
     }
 
     public void onBackPressed() {

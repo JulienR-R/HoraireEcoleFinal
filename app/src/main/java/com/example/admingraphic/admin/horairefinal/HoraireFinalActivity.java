@@ -1,4 +1,4 @@
-package com.example.admingraphic.admin;
+package com.example.admingraphic.admin.horairefinal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.example.admingraphic.R;
+import com.example.admingraphic.admin.EmployeDetailActivity;
 import com.example.admingraphic.expendablelistview.CustomExpandableListAdapter;
 import com.example.admingraphic.expendablelistview.ExpandableListDataPump;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by 201663676 on 2019-04-23.
  */
 
-public class AdminHoraireViewActivity extends AppCompatActivity{
+public class HoraireFinalActivity extends AppCompatActivity{
     Toolbar toolbar;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
@@ -31,13 +32,13 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_horaireview_view);
+        setContentView(R.layout.admin_horairefinal_view/********/);
         ExpendableViewHoraireView();
         setToolbar();
     }
 
     public void ExpendableViewHoraireView(){
-        expandableListView = findViewById(R.id.expandablePlage);
+        expandableListView = findViewById(R.id.expandablePlage_final);
         listPlageDetail = ExpandableListDataPump.getData();
         listPlageTitle = new ArrayList<>(listPlageDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, listPlageTitle, listPlageDetail);
@@ -47,7 +48,7 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 String item = (String) parent.getAdapter().getItem(childPosition);
-                Intent intentEmployeDetail = new Intent(AdminHoraireViewActivity.this, EmployeDetailActivity.class);
+                Intent intentEmployeDetail = new Intent(HoraireFinalActivity.this, EmployeDetailActivity.class);
                 //put extra to get the employe with item
                 startActivity(intentEmployeDetail);
                 return false;
@@ -58,7 +59,7 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(R.string.title_admin_horaire);
+        setTitle(R.string.title_admin_horairefinal);
     }
 
     public void onBackPressed() {finish(); }
