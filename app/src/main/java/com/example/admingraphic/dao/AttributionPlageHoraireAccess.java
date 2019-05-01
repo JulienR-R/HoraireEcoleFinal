@@ -18,7 +18,7 @@ public interface AttributionPlageHoraireAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertAttributionPlageHoraire(AttributionPlageHoraire attributionPlageHoraire);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAttributionPlageHoraires(ArrayList<AttributionPlageHoraire> attributionPlageHoraires);
+    void insertAttributionPlageHoraires(List<AttributionPlageHoraire> attributionPlageHoraires);
     @Query("SELECT * FROM AttributionPlageHoraire")
     List<AttributionPlageHoraire> getAttributionPlageHoraires();
     @Query("SELECT * FROM AttributionPlageHoraire WHERE _id = :attributionPlageHoraire")

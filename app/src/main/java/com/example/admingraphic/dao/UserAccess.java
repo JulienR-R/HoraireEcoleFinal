@@ -18,7 +18,7 @@ public interface UserAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertUser(User user);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUsers(ArrayList<User> users);
+    void insertUsers(List<User> users);
     @Query("SELECT * FROM User")
     List<User> getUsers();
     @Query("SELECT * FROM User WHERE _id = :id")

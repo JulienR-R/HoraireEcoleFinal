@@ -29,6 +29,8 @@ public class User implements Parcelable {
     public User(String userId, String pwd) {
         setUserId(userId);
         setPwd(pwd);
+        setSeniority(0);
+        setIsAdmin(false);
     }
 
     protected User(Parcel in) {

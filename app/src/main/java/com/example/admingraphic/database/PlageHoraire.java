@@ -3,11 +3,13 @@ package com.example.admingraphic.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.Instant;
 
 
 @Entity(tableName = "plageHoraire")
@@ -27,8 +29,12 @@ public class PlageHoraire implements Parcelable {
 
     //public PlageHoraire(){}
 
-    public PlageHoraire(String description) {
+    public PlageHoraire(String description,Date date,Time heureDebut,Time heureFin,int effectif) {
         setDescription(description);
+        setDate(date);
+        setHeureDebut(heureDebut);
+        setHeureFin(heureFin);
+        setEffectif(effectif);
     }
 
     protected PlageHoraire(Parcel in) {

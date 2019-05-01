@@ -18,7 +18,7 @@ public interface ChoixPlageHoraireAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertChoixPlageHoraire(ChoixPlageHoraire choixPlageHoraire);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertChoixPlageHoraires(ArrayList<ChoixPlageHoraire> choixPlageHoraires);
+    void insertChoixPlageHoraires(List<ChoixPlageHoraire> choixPlageHoraires);
     @Query("SELECT * FROM ChoixPlageHoraire")
     List<ChoixPlageHoraire> getChoixPlageHoraires();
     @Query("SELECT * FROM ChoixPlageHoraire WHERE _id = :choixPlageHoraireId")
