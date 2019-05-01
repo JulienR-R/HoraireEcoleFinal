@@ -23,8 +23,8 @@ public interface UserAccess {
     List<User> getUsers();
     @Query("SELECT * FROM User WHERE _id = :id")
     User getUser(int id);
-    @Query("SELECT * FROM User WHERE userID = :userId")
-    User getUser(String userId);
+    @Query("SELECT * FROM User WHERE userID = :userId AND pwd = :pwd")
+    User getUser(String userId,String pwd);
     @Update()
     int updateUser(User user);
     @Delete
