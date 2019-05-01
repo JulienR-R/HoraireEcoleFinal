@@ -20,31 +20,39 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/user_horaireview"
+            android:id="@+id/admin_horairecreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/user_horaireview" />
+            android:text="@string/admin_horairecreation" />
 
         <Button
-            android:id="@+id/user_horairechoice"
+            android:id="@+id/admin_horairefinal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:enabled="true"
-            android:text="@string/user_horairechoice" />
+            android:text="@string/admin_horairefinal" />
 
         <Button
-            android:id="@+id/user_admincontact"
+            android:id="@+id/admin_horaireview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/user_admincontact" />
+            android:text="@string/admin_horaireview" />
+
+        <Button
+            android:id="@+id/admin_employeview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/admin_employeview" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

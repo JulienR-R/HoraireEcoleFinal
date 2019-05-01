@@ -19,10 +19,14 @@
     <string name="login_username">Numéro d\'employé</string>
     <string name="login_password">Mot de passe</string>
     <string name="btnlogin_connection">Se Connecter</string>
+    <string name="admin">Admin</string>
+    <string name="client">Client</string>
+
 
     <!-- AdminCenter -->
-    <string name="admin_horaireview">Voir les horaires</string>
     <string name="admin_horairecreation">Créer les plages-horaires</string>
+    <string name="admin_horairefinal">Confirmer les choix</string>
+    <string name="admin_horaireview">Voir les horaires</string>
     <string name="admin_employeview">Voir les employés</string>
 
     <!-- Horaire Informations -->
@@ -30,19 +34,51 @@
     <string name="etTimeBegin">Heure de début : </string>
     <string name="etTimeEnd">Heure de fin : </string>
     <string name="etEmploye">Nombre d\'employé : </string>
-    <string name="etListeEmploye">Employés dans cette plage : </string>
     <string name="etPlace">Endroit du travail : </string>
     <string name="etDescription">Description du travail : </string>
 
     <!-- User Informations -->
     <string name="etNoEmp">No. Employé : </string>
     <string name="etNameEmp">Nom d\'employé : </string>
-    <string name="etEmailEmp">Courriel de l\'employé : </string>
+    <string name="etEmailEmp">Courriel d\'employé : </string>
     <string name="etAncienneteEmp">Niveau d\'ancienneté : </string>
-    <string name="etListWork">Liste des plages de la semaine : </string>
 
     <!-- UserCenter -->
     <string name="user_horaireview">Voir son horaire</string>
     <string name="user_horairechoice">Choisir son horaire</string>
+    <string name="user_horairechoice_edit">Modifier son horaire</string>
     <string name="user_admincontact">Contacter l\'administrateur</string>
+
+    <!-- Title User -->
+    <string name="title_user_center">Menu Principal</string>
+    <string name="title_user_horaire">Liste des plage-horaire</string>
+    <string name="title_user_horairedetail">Détails de la plage-horaire</string>
+    <string name="title_user_horairechoice">Liste des choix de plage-horaire</string>
+
+    <!-- Title Admin -->
+    <string name="title_admin_center">Menu Principal Administrateur</string>
+    <string name="title_admin_horaire">Horaire de la semaine</string>
+    <string name="title_admin_horairecreation">Liste des plages de la prochaine semaine</string>
+    <string name="title_admin_horairecreation_detail">Détails de la plage-horaire</string>
+    <string name="title_admin_horairecreation_edit">Modification de la plage-horaire</string>
+    <string name="title_admin_horairecreation_add">Création de plage-horaire</string>
+    <string name="title_admin_horairefinal">Finalisation de la semaine</string>
+    <string name="title_admin_employe">Liste des employés</string>
+    <string name="title_admin_employedetail">Détails de l\'employé</string>
+
+    <!-- Title Popup -->
+    <string name="title_edit_password">Changement de mot de passe</string>
+    <string name="title_confirmation">Confirmation?</string>
+
+    <!-- Messge Popup -->
+    <string name="message_edit_password">Écrire un nouveau mot de passe pour remplacer l\'ancien</string>
+    <string name="message_logout">Êtes-vous sure de vouloir vous déconnecter?</string>
+    <string name="message_horairechoice_final">Êtes-vous sure de vouloir finaliser le choix d\'horaire de la semaine? Vous ne pourrez plus le modifier.</string>
+    <string name="message_horairecreation_final">Êtes-vous sure de vouloir finaliser l\'horaire de la semaine?</string>
+    <string name="message_horairecreation_add_cancel">Êtes-vous sure de vouloir annuler l\'ajout de cette plage? Votre progression sera perdu.</string>
+    <string name="message_horairecreation_add_confirm">Êtes-vous sure de vouloir ajouter cette plage à \'horaire?</string>
+    <string name="message_horairecreation_edit_cancel">Êtes-vous sure de vouloir annuler les modifications de cette plage? Votre progression sera perdu.</string>
+    <string name="message_horairecreation_edit_confirm">Êtes-vous sure de vouloir modifier cette plage-horaire?</string>
+    <string name="message_horaire_delete">Êtes-vous sure de vouloir supprimer cette plage à l\'horaire?</string>
+    <string name="message_employe_delete">Êtes-vous sure de vouloir supprimer cet employé?</string>
 </resources>

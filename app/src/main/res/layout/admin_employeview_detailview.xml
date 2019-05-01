@@ -13,18 +13,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etDate"
-            android:textSize="20sp" />
+            android:text="@string/etNoEmp"
+            android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/textView_etDate"
+            android:id="@+id/textView_etNoEmp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="-"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </LinearLayout>
 
@@ -37,18 +37,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etTimeBegin"
-            android:textSize="20sp" />
+            android:text="@string/etNameEmp"
+            android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/textView_etTimeBegin"
+            android:id="@+id/textView_etNameEmp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="-"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </LinearLayout>
 
@@ -61,18 +61,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etTimeEnd"
-            android:textSize="20sp" />
+            android:text="@string/etEmailEmp"
+            android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/textView_etTimeEnd"
+            android:id="@+id/textView_etEmailEmp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="-"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </LinearLayout>
 
@@ -85,65 +85,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etPlace"
-            android:textSize="20sp" />
+            android:text="@string/etAncienneteEmp"
+            android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/textView_etPlace"
+            android:id="@+id/textView_etAncienneteEmp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:paddingBottom="20dp"
             android:paddingTop="10dp"
             android:text="-"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/etEmploye"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView_etEmploye"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingBottom="20dp"
-            android:paddingTop="10dp"
-            android:text="-"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/etDescription"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView_etDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingBottom="20dp"
-            android:paddingTop="10dp"
-            android:text="-"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </LinearLayout>
 
