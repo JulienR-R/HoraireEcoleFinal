@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
         //si le user avait check stayConnected on saute le login
         goToMainActivity();
 
@@ -44,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         email = findViewById(R.id.input_email);
         pwd = findViewById(R.id.input_password);
@@ -103,12 +103,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         //on store le statut du user s'il veut rester connecté
-        if(checkBoxConnected.isChecked()) {
-            sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isAdmin", currentUser.getIsAdmin());
-            editor.apply();
-        }
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isAdmin", currentUser.getIsAdmin());
+        editor.putBoolean("stayConnected",checkBoxConnected.isChecked());
+        editor.apply();
 
         Intent intent = currentUser.getIsAdmin()? new Intent(this, AdminCenterActivity.class):
                 new Intent(this, UserCenterActivity.class) ;
