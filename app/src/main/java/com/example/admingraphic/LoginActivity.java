@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = currentUser.getIsAdmin()? new Intent(this, AdminCenterActivity.class):
                 new Intent(this, UserCenterActivity.class) ;
         startActivity(intent);
+        finish();
     }
 
     public void goToMainActivity(){
@@ -122,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent goToPage = isAdmin? new Intent(this,AdminCenterActivity.class):
                     new Intent(this,UserCenterActivity.class);
             startActivity(goToPage);
+            finish();
         }
     }
 }
