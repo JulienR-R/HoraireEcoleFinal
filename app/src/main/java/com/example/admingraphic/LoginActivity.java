@@ -49,15 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.input_email);
         pwd = findViewById(R.id.input_password);
         checkBoxConnected = findViewById(R.id.stayConnected);
-        checkBoxConnected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("stayConnected",isChecked);
-                editor.apply();
-            }
-        });
         loginButton = findViewById(R.id.btn_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
