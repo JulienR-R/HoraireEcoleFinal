@@ -3,6 +3,7 @@ package com.example.admingraphic;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -37,13 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         //si le user avait check stayConnected on saute le login
         goToMainActivity();
 
-        //populate database
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                PopulateDatabase populateDatabase = new PopulateDatabase(LoginActivity.this);
-            }
-        });
+        //new PopulateDatabaseCreation().execute();
+        
 
         setContentView(R.layout.login);
         email = findViewById(R.id.input_email);
@@ -70,9 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-
                             HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(LoginActivity.this);
-                            currentUser = horairesDataBase.userAccess().getUser(email.getText().toString(), pwd.getText().toString());
+                            currentUser = horairesDataBase.userAccess().getUser(email.getText().toString()/*, pwd.getText().toString()*/);
                             sendPostExecuteMessage();
                         }
 
@@ -117,4 +112,13 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
     }
+
+    /*private class PopulateDatabaseCreation extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            PopulateDatabase populateDatabase = new PopulateDatabase(LoginActivity.this);
+            HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(LoginActivity.this);
+            return null;
+        }
+    }*/
 }
