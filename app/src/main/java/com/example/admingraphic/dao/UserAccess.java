@@ -19,14 +19,14 @@ public interface UserAccess {
     long insertUser(User user);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsers(List<User> users);
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM users WHERE isAdmin = 0")
     List<User> getUsers();
-    @Query("SELECT * FROM User WHERE _id = :id")
+    @Query("SELECT * FROM users WHERE _id = :id")
     User getUser(int id);
-    @Query("SELECT * FROM User WHERE userID = :userId AND pwd = :pwd")
+    @Query("SELECT * FROM users WHERE userID = :userId AND pwd = :pwd")
     User getUser(String userId,String pwd);
     @Update()
-    int updateUser(User user);
+    int updateUser(User user1);
     @Delete
     int deleteUser(User user);
 }

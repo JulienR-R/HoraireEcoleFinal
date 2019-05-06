@@ -120,4 +120,14 @@ public class PlageHoraire implements Parcelable {
     public void setEffectif(int effectif) {
         this.effectif = effectif;
     }
+
+    @Override
+    public String toString() {
+        return  "description='" + description + "\n" +
+                "date=" + date + "\n" +
+                "debut=" + heureDebut + "\t" +
+                "fin=" + heureFin + "\n" +
+                "Effectif=" + effectif +
+                '}';
+    }
 }

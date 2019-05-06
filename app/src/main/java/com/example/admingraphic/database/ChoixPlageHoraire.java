@@ -10,10 +10,10 @@ import android.os.Parcelable;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "choixPlageHoraire", foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "_id",
+@Entity(tableName = "choixPlageHoraire"/*, foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "_id",
         childColumns = "userId", onDelete = CASCADE),
         @ForeignKey(entity = PlageHoraire.class, parentColumns = "_id",
-                childColumns = "plageHoraireId", onDelete = CASCADE)})
+                childColumns = "plageHoraireId", onDelete = CASCADE)}*/)
 public class ChoixPlageHoraire implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long _id;

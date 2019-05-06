@@ -19,9 +19,9 @@ public interface PlageHoraireAccess {
     long insertPlageHoraire(PlageHoraire plageHoraire);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPlageHoraires(List<PlageHoraire> plageHoraires);
-    @Query("SELECT * FROM PlageHoraire")
+    @Query("SELECT * FROM plageHoraire")
     List<PlageHoraire> getPlageHoraires();
-    @Query("SELECT * FROM PlageHoraire WHERE _id = :plageHoraireId")
+    @Query("SELECT * FROM plageHoraire WHERE _id = :plageHoraireId")
     PlageHoraire getPlageHoraire(int plageHoraireId);
     @Update()
     int updatePlageHoraire(PlageHoraire plageHoraire);

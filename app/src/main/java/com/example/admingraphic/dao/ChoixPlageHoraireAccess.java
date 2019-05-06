@@ -9,6 +9,8 @@ import android.arch.persistence.room.Update;
 import android.database.Cursor;
 
 import com.example.admingraphic.database.ChoixPlageHoraire;
+import com.example.admingraphic.database.PlageHoraire;
+import com.example.admingraphic.database.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,12 @@ public interface ChoixPlageHoraireAccess {
     long insertChoixPlageHoraire(ChoixPlageHoraire choixPlageHoraire);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertChoixPlageHoraires(List<ChoixPlageHoraire> choixPlageHoraires);
-    @Query("SELECT * FROM ChoixPlageHoraire")
+    @Query("SELECT * FROM choixPlageHoraire")
     List<ChoixPlageHoraire> getChoixPlageHoraires();
-    @Query("SELECT * FROM ChoixPlageHoraire WHERE _id = :choixPlageHoraireId")
+    @Query("SELECT * FROM choixPlageHoraire WHERE _id = :choixPlageHoraireId")
     ChoixPlageHoraire getChoixPlageHoraire(int choixPlageHoraireId);
+    @Query("SELECT * FROM choixPlageHoraire WHERE userId = :userId AND plageHoraireId = :plageHoraireId")
+    ChoixPlageHoraire getChoixPlageHoraire(long userId, long plageHoraireId);
     @Update()
     int updateChoixPlageHoraire(ChoixPlageHoraire choixPlageHoraire);
     @Delete

@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-@Entity(tableName = "user", indices = {@Index(value = "userId", unique = true)})
+@Entity(tableName = "users", indices = {@Index(value = "userId", unique = true)})
 public class User implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long _id;
