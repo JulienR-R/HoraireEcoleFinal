@@ -5,8 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ExpandableListView
-        android:id="@+id/expandablePlage"
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"></android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/listPlage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
