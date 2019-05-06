@@ -1,15 +1,13 @@
 package com.example.admingraphic;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +19,7 @@ import com.example.admingraphic.database.PopulateDatabase;
 import com.example.admingraphic.database.User;
 import com.example.admingraphic.user.UserCenterActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     EditText email;
     EditText pwd;
@@ -38,9 +36,23 @@ public class LoginActivity extends AppCompatActivity {
         //si le user avait check stayConnected on saute le login
         goToMainActivity();
 
-        //new PopulateDatabaseCreation().execute();
-        
+        //populate database
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PopulateDatabase populateDatabase = new PopulateDatabase(LoginActivity.this);
+                HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(LoginActivity.this);
+                User user = horairesDataBase.userAccess().getUser(1);
+                user.setIsAdmin(true);
+                horairesDataBase.userAccess().updateUser(user);
+            }
 
+        }).start();
+
+        loadPage();
+    }
+
+    public void loadPage(){
         setContentView(R.layout.login);
         email = findViewById(R.id.input_email);
         pwd = findViewById(R.id.input_password);
@@ -66,8 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+
                             HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(LoginActivity.this);
-                            currentUser = horairesDataBase.userAccess().getUser(email.getText().toString()/*, pwd.getText().toString()*/);
+                            currentUser = horairesDataBase.userAccess().getUser(email.getText().toString(), pwd.getText().toString());
                             sendPostExecuteMessage();
                         }
 
@@ -79,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
                     }).start();
                 }
             } });
-
     }
 
     private void loadHoraireOnPostExecute(){
@@ -94,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
         editor.putBoolean("isAdmin", currentUser.getIsAdmin());
         editor.putBoolean("stayConnected",checkBoxConnected.isChecked());
         editor.apply();
-
         Intent intent = currentUser.getIsAdmin()? new Intent(this, AdminCenterActivity.class):
                 new Intent(this, UserCenterActivity.class) ;
         startActivity(intent);
@@ -112,13 +123,4 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    /*private class PopulateDatabaseCreation extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            PopulateDatabase populateDatabase = new PopulateDatabase(LoginActivity.this);
-            HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(LoginActivity.this);
-            return null;
-        }
-    }*/
 }
