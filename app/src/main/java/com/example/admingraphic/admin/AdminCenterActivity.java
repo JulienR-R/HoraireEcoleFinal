@@ -1,7 +1,9 @@
 package com.example.admingraphic.admin;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +16,6 @@ import android.widget.EditText;
 
 import com.example.admingraphic.R;
 import com.example.admingraphic.admin.horairecreation.HoraireCreationActivity;
-import com.example.admingraphic.admin.horairefinal.HoraireFinalActivity;
 
 /**
  * Created by 201663676 on 2019-04-23.
@@ -22,7 +23,7 @@ import com.example.admingraphic.admin.horairefinal.HoraireFinalActivity;
 
 public class AdminCenterActivity  extends AppCompatActivity implements View.OnClickListener{
     Toolbar toolbar;
-    Button btnAdminHoraireView, btnAdminHoraireCreation, btnAdminEmployeView, btnAdminHoraireFinal;
+    Button btnAdminHoraireView, btnAdminHoraireCreation, btnAdminEmployeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,6 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
     public void ButtonAdminCenter(){
         btnAdminHoraireCreation = findViewById(R.id.admin_horairecreation);
         btnAdminHoraireCreation.setOnClickListener(this);
-        btnAdminHoraireFinal = findViewById(R.id.admin_horairefinal);
-        btnAdminHoraireFinal.setOnClickListener(this);
         btnAdminHoraireView = findViewById(R.id.admin_horaireview);
         btnAdminHoraireView.setOnClickListener(this);
         btnAdminEmployeView = findViewById(R.id.admin_employeview);
@@ -59,11 +58,6 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
             case R.id.admin_employeview:
                 Intent intentEmployeView = new Intent(AdminCenterActivity.this, EmployeViewActivity.class);
                 startActivity(intentEmployeView);
-                break;
-
-            case R.id.admin_horairefinal:
-                Intent intentHoraireFinal = new Intent(AdminCenterActivity.this, HoraireFinalActivity.class);
-                startActivity(intentHoraireFinal);
                 break;
 
             default:
@@ -104,7 +98,11 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        // connection key down and move to loginpage
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("stayConnected",false);
+                        editor.apply();
+                        finish();
                     }
                 }).create().show();
     }
