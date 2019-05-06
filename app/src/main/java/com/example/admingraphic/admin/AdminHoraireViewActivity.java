@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 
 import com.example.admingraphic.R;
+import com.example.admingraphic.database.HorairesDataBase;
+import com.example.admingraphic.database.PlageHoraire;
+import com.example.admingraphic.database.User;
 import com.example.admingraphic.expendablelistview.CustomExpandableListAdapter;
 import com.example.admingraphic.expendablelistview.ExpandableListDataPump;
 
@@ -23,37 +28,32 @@ import java.util.List;
 
 public class AdminHoraireViewActivity extends AppCompatActivity{
     Toolbar toolbar;
-    ExpandableListView expandableListView;
-    ExpandableListAdapter expandableListAdapter;
-    List<String> listPlageTitle;
-    HashMap<String, List<String>> listPlageDetail;
+    ArrayAdapter<String> adapter;
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_horaireview_view);
-        ExpendableViewHoraireView();
+        list = findViewById(R.id.listPlage);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(AdminHoraireViewActivity.this);
+                List<PlageHoraire> plageHoraires = horairesDataBase.plageHoraireAccess().getPlageHoraires();
+                List<String> listPlageTitle = new ArrayList<String>();
+                for (PlageHoraire plageHoraire:plageHoraires) {
+                    listPlageTitle.add(plageHoraire.toString());
+                }
+                adapter = new ArrayAdapter<String>(AdminHoraireViewActivity.this,
+                        android.R.layout.simple_list_item_1,android.R.id.text1,listPlageTitle);
+
+                list.setAdapter(adapter);
+            }
+        }).start();
         setToolbar();
     }
 
-    public void ExpendableViewHoraireView(){
-        expandableListView = findViewById(R.id.expandablePlage);
-        listPlageDetail = ExpandableListDataPump.getData();
-        listPlageTitle = new ArrayList<>(listPlageDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(this, listPlageTitle, listPlageDetail);
-        expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                String item = (String) parent.getAdapter().getItem(childPosition);
-                Intent intentEmployeDetail = new Intent(AdminHoraireViewActivity.this, EmployeDetailActivity.class);
-                //put extra to get the employe with item
-                startActivity(intentEmployeDetail);
-                return false;
-            }
-        });
-    }
 
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
