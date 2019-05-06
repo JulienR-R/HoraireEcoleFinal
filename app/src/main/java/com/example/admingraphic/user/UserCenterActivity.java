@@ -1,7 +1,9 @@
 package com.example.admingraphic.user;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.admingraphic.R;
-import com.example.admingraphic.admin.AdminHoraireViewActivity;
 
 /**
  * Created by 201663676 on 2019-04-23.
@@ -93,7 +94,11 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        // connection key down and move to loginpage
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("stayConnected",false);
+                        editor.apply();
+                        finish();
                     }
                 }).create().show();
     }
