@@ -40,5 +40,10 @@
         <item name="android:background">@color/primary</item>
     </style>
 
-</resources>
+    <style name="SaveFlatButton" parent="Theme.AppCompat.Light">
+    <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+    <item name="colorControlHighlight">@color/colorAccent</item>
+    <item name="colorAccent">@color/colorPrimary</item>
+</style>
 
+</resources>

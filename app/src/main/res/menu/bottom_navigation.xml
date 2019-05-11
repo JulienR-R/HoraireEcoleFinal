@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_creation_horaire"
+        android:icon="@drawable/ic_schedule"
+        android:title="Créer horaire"/>
+    <item
+        android:id="@+id/nav_creation_usager"
+        android:icon="@drawable/ic_add"
+        android:title="Créer usager"/>
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:title="Chercher usager"/>
+
+</menu>
