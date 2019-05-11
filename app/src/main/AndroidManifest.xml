@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.admingraphic">
+    package="com.example.horaire">
 
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,15 +16,13 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".LoginActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".user.UserCenterActivity">
-
-        </activity>
+        <activity android:name=".user.UserCenterActivity" />
         <activity android:name=".user.UserHoraireViewActivity"/>
         <activity android:name=".user.HoraireViewDetailActivity"/>
         <activity android:name=".user.HoraireChoiceActivity"/>
@@ -28,8 +31,10 @@
 
         <activity android:name=".admin.AdminHoraireViewActivity"/>
         <activity android:name=".admin.EmployeDetailActivity"/>
-        <activity android:name=".admin.EmployeViewActivity"/>
-        <activity android:name=".admin.horairecreation.HoraireCreationActivity"/>
+        <activity android:name=".admin.EmployeCreationActivity"/>
+        <activity android:name=".admin.EmployeViewActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".admin.HoraireCreationActivity"/>
         <activity android:name=".admin.horairecreation.HoraireCreationAddActivity"/>
         <activity android:name=".admin.horairecreation.HoraireCreationDetailActivity"/>
         <activity android:name=".admin.horairecreation.HoraireCreationEditActivity"/>
