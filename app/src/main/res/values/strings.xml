@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">HoraireEcole</string>
+
     <string-array name="options_admin">
-    <item>Oui</item>
-    <item>Non</item>
+        <item>Oui</item>
+        <item>Non</item>
     </string-array>
 
     <string-array name="options_effectif">
@@ -22,47 +23,19 @@
         <item>14</item>
         <item>15</item>
     </string-array>
+
+    <string name="admin">Admin</string>
+    <string name="user">Employé</string>
+
     <!-- Boutons -->
+    <string name="btnSave">Sauvegarder</string>
     <string name="btnConfirm">Confirmer</string>
     <string name="btnCancel">Annuler</string>
-    <string name="btnAdd">Ajouter</string>
-    <string name="btnEdit">Modifier</string>
-    <string name="btnDelete">Supprimer</string>
-    <string name="btnFinalize">Finaliser</string>
-    <string name="btnDesactiver">Désactiver</string>
     <string name="btnReturn">Retour</string>
 
     <!-- MenuOptions -->
     <string name="action_edit_password">Changer de mot de passe</string>
     <string name="action_logout">Se Déconnecter</string>
-
-    <!-- Login -->
-    <string name="login_username">Numéro d\'employé</string>
-    <string name="login_password">Mot de passe</string>
-    <string name="btnlogin_connection">Se Connecter</string>
-    <string name="admin">Admin</string>
-    <string name="client">Client</string>
-
-
-    <!-- AdminCenter -->
-    <string name="admin_horairecreation">Créer les plages-horaires</string>
-    <string name="admin_horairefinal">Confirmer les choix</string>
-    <string name="admin_horaireview">Voir les horaires</string>
-    <string name="admin_employeview">Voir les employés</string>
-
-    <!-- Horaire Informations -->
-    <string name="etDate">Date : </string>
-    <string name="etTimeBegin">Heure de début : </string>
-    <string name="etTimeEnd">Heure de fin : </string>
-    <string name="etEmploye">Nombre d\'employé : </string>
-    <string name="etPlace">Endroit du travail : </string>
-    <string name="etDescription">Description du travail : </string>
-
-    <!-- User Informations -->
-    <string name="etNoEmp">No. Employé : </string>
-    <string name="etNameEmp">Nom d\'employé : </string>
-    <string name="etEmailEmp">Courriel d\'employé : </string>
-    <string name="etAncienneteEmp">Niveau d\'ancienneté : </string>
 
     <!-- UserCenter -->
     <string name="user_horaireview">Voir son horaire</string>
@@ -74,18 +47,11 @@
     <string name="title_user_center">Menu Principal</string>
     <string name="title_user_horaire">Liste des plage-horaire</string>
     <string name="title_user_horairedetail">Détails de la plage-horaire</string>
-    <string name="title_user_horairechoice">Liste des choix de plage-horaire</string>
+    <string name="title_user_horairechoice">Choix de plage-horaire</string>
 
     <!-- Title Admin -->
-    <string name="title_admin_center">Menu Principal Administrateur</string>
-    <string name="title_admin_horaire">Horaire de la semaine</string>
     <string name="title_admin_horairecreation">Liste des plages de la prochaine semaine</string>
     <string name="title_admin_horairecreation_detail">Détails de la plage-horaire</string>
-    <string name="title_admin_horairecreation_edit">Modification de la plage-horaire</string>
-    <string name="title_admin_horairecreation_add">Création de plage-horaire</string>
-    <string name="title_admin_horairefinal">Finalisation de la semaine</string>
-    <string name="title_admin_employe">Liste des employés</string>
-    <string name="title_admin_employedetail">Détails de l\'employé</string>
 
     <!-- Title Popup -->
     <string name="title_edit_password">Changement de mot de passe</string>
@@ -103,6 +69,48 @@
     <string name="message_horaire_delete">Êtes-vous sure de vouloir supprimer cette plage à l\'horaire?</string>
     <string name="message_employe_delete">Êtes-vous sure de vouloir supprimer cet employé?</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <!-- Login -->
+    <string name="title_login">Page de connexion</string>
+    <string name="btnlogin">Se Connecter</string>
+    <string name="czkStay">Rester connecter</string>
+
+    <!-- Title Admin Employé -->
+    <string name="title_admin_employe">Liste des employés</string>
+    <string name="title_admin_employe_add">Ajouter un employé</string>
+    <string name="title_admin_employe_edit">Modification de l\'employé</string>
+
+    <!-- Title Admin Horaire -->
+    <string name="title_admin_horaire">Horaire de la semaine</string>
+    <string name="title_admin_horaire_add">Création de plage-horaire</string>
+    <string name="title_admin_horaire_edit">Modification de la plage-horaire</string>
+
+    <!-- AdminCenter -->
+    <string name="title_admin_center">Menu Principal administratif</string>
+    <string name="admin_addhoraire">Créer horaire</string>
+    <string name="admin_addemploye">Créer usager</string>
+    <string name="admin_allhoraireview">Archives horaire</string>
+    <string name="admin_horaireview">Modifier/Supprimer un horaire</string>
+    <string name="admin_employeview">Modifier/Supprimer un employé</string>
+
+
+    <!-- User Informations -->
+    <string name="prenomEmp">PRÉNOM</string>
+    <string name="nomEmp">NOM</string>
+    <string name="emailEmp">COURRIEL</string>
+    <string name="passwordEmp">MOT DE PASSE</string>
+    <string name="seniorityEmp">Ancienneté</string>
+
+    <!-- Horaire Informations -->
+    <string name="descriptionHoraire">DESCRIPTION</string>
+    <string name="nbEmployeHoraire">Nombre d\'effectif</string>
+    <string name="dateHoraire">Date</string>
+    <string name="timeBeginHoraire">Heure de début</string>
+    <string name="timeEndHoraire">Heure de fin</string>
+    <string name="dateChoixHoraire">Date choisie</string>
+    <string name="timeChoixBeginHoraire">Heure de début choisie</string>
+    <string name="timeChoixEndHoraire">Heure de fin choisie</string>
 </resources>

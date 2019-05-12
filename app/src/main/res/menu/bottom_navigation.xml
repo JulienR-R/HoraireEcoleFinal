@@ -4,14 +4,14 @@
     <item
         android:id="@+id/nav_creation_horaire"
         android:icon="@drawable/ic_schedule"
-        android:title="Créer horaire"/>
+        android:title="@string/admin_addhoraire"/>
     <item
         android:id="@+id/nav_creation_usager"
         android:icon="@drawable/ic_add"
-        android:title="Créer usager"/>
+        android:title="@string/admin_addemploye"/>
     <item
-        android:id="@+id/nav_search"
-        android:icon="@drawable/ic_search"
-        android:title="Chercher usager"/>
+        android:id="@+id/nav_all_horaire"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/admin_allhoraireview"/>
 
 </menu>

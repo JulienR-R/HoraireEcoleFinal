@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.horaire.LoginActivity;
 import com.example.horaire.R;
+import com.example.horaire.admin.AdminCenterActivity;
 
 
 /**
@@ -23,6 +25,7 @@ import com.example.horaire.R;
 public class UserCenterActivity extends AppCompatActivity implements View.OnClickListener{
     Toolbar toolbar;
     Button btnUserHoraireView, btnUserHoraireChoice, btnUserAdminContact;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +48,22 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.user_horaireview:
-                Intent intentHoraireView = new Intent(this, UserHoraireViewActivity.class);
-                startActivity(intentHoraireView);
+                intent = new Intent(this, UserHoraireViewActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.user_horairechoice:
                 //vérifier que le choix d'horaire est activé
-                Intent intentHoraireChoice = new Intent(this, HoraireChoiceActivity.class);
-                startActivity(intentHoraireChoice);
+                intent = new Intent(this, UserHoraireChoiceActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.user_admincontact:
-               Intent intent = new Intent(Intent.ACTION_SEND);
-               intent.setType("text/plain");
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_EMAIL, "manon_robert-rochon@gmail.com");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Problèmes/Informations");
                 intent.putExtra(Intent.EXTRA_TEXT, "Écrivez votre message ici.");
-
                 startActivity(Intent.createChooser(intent, "Send Email"));
 
                 break;
@@ -77,9 +79,9 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_edit_password:
+            /*case R.id.action_edit_password:
                 editPassword();
-                return true;
+                return true;*/
             case R.id.action_logout:
                 notifyLogout();
                 return true;
@@ -101,12 +103,13 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
                 .setNegativeButton(R.string.btnCancel, null)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        // connection key down and move to loginpage
+                        intent = new Intent(UserCenterActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
                 }).create().show();
     }
 
-    public void editPassword(){
+    /*public void editPassword(){
         final EditText newpassword = new EditText(this);
         new AlertDialog.Builder(this)
                 .setTitle(R.string.title_edit_password)
@@ -114,11 +117,11 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
                 .setNegativeButton(R.string.btnCancel, null)
                 .setView(newpassword)
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
+                    public void onClick(DialogInterface arg0, int arg1) {*/
                         // si password n'est pas le même qu'actuel et qu'il n'est pas vide
                         // changer password dans la base de donnée
                         // sinon, toast expliquant l'erreur (Tu as oublié de mettre un mot de passe)
-                    }
+                    /*}
                 }).create().show();
-    }
+    }*/
 }

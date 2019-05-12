@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:background="@color/white"
+
+    >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_prenom"
+        android:hint="@string/prenomEmp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:layout_marginStart="16dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_nom"
+        android:hint="@string/nomEmp"
+        android:layout_below="@id/create_prenom"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:layout_marginStart="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_email"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/emailEmp"
+        android:layout_marginStart="16dp"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/create_nom"/>
+
+
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_password"
+        android:hint="@string/passwordEmp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:inputType="text"
+        android:layout_below="@id/create_email"/>
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/admin"
+        android:id="@+id/textAdmin"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/create_password"
+        android:layout_marginLeft="20dp" />
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_admin"
+        android:entries="@array/options_admin"
+
+        android:layout_toRightOf="@id/textAdmin"
+        android:layout_marginStart="20dp"
+      android:layout_marginTop="10dp"
+        android:layout_below="@id/create_password"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/seniorityEmp"
+        android:id="@+id/textSenority"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/create_admin"
+        android:layout_marginLeft="20dp" />
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_senority"
+        android:entries="@array/options_effectif"
+        android:layout_toRightOf="@id/textSenority"
+        android:layout_marginStart="20dp"
+
+
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/create_admin"
+        android:layout_marginLeft="20dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:layout_below="@id/textSenority"
+        android:background="@drawable/transparent_bg_bordered_button"
+        android:layout_marginTop="25dp"
+        android:text="@string/btnSave"
+        android:id="@+id/btnSave"
+        android:textColor="@color/primary"/>
+
+</RelativeLayout>

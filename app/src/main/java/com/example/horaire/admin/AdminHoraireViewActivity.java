@@ -8,18 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 
 import com.example.horaire.R;
-import com.example.horaire.admin.horairecreation.Horaire_Adapter;
 import com.example.horaire.database.HorairesDataBase;
 import com.example.horaire.database.PlageHoraire;
-import com.example.horaire.database.User;
 
-
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -33,14 +27,14 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
 
     private RecyclerView recyclerView;
     private List<PlageHoraire> plageHoraireList;
-    private Horaire_Adapter horairesAdapter = new Horaire_Adapter();
+    private AdminHoraire_Adapter horairesAdapter = new AdminHoraire_Adapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.horaire_view);
+        setContentView(R.layout.admin_horaire_view);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

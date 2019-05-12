@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import com.example.horaire.user.UserCenterActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
-
+    Toolbar toolbar;
     EditText email;
     EditText pwd;
     Button loginButton;
@@ -56,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loadPage(){
         setContentView(R.layout.login);
+        toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        setTitle(R.string.title_login);
         email = findViewById(R.id.input_email);
         pwd = findViewById(R.id.input_password);
         checkBoxConnected = findViewById(R.id.stayConnected);

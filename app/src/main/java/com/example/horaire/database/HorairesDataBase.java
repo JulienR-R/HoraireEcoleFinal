@@ -6,10 +6,10 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import com.example.horaire.Dao.AttributionPlageHoraireAccess;
-import com.example.horaire.Dao.ChoixPlageHoraireAccess;
-import com.example.horaire.Dao.PlageHoraireAccess;
-import com.example.horaire.Dao.UserAccess;
+import com.example.horaire.dao.AttributionPlageHoraireAccess;
+import com.example.horaire.dao.ChoixPlageHoraireAccess;
+import com.example.horaire.dao.PlageHoraireAccess;
+import com.example.horaire.dao.UserAccess;
 
 @Database(entities = {User.class,PlageHoraire.class,ChoixPlageHoraire.class,AttributionPlageHoraire.class},
         version = 2, exportSchema = false)

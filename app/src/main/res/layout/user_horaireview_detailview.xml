@@ -13,7 +13,31 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etDate"
+            android:text="@string/descriptionHoraire"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView_etDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingBottom="25dp"
+            android:paddingTop="10dp"
+            android:text="-"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/dateHoraire"
             android:textSize="20sp" />
 
         <TextView
@@ -37,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etTimeBegin"
+            android:text="@string/timeBeginHoraire"
             android:textSize="20sp" />
 
         <TextView
@@ -61,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etTimeEnd"
+            android:text="@string/timeEndHoraire"
             android:textSize="20sp" />
 
         <TextView
@@ -85,11 +109,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/etPlace"
+            android:text="@string/nbEmployeHoraire"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView_etPlace"
+            android:id="@+id/textView_etNbEmploye"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -99,29 +123,7 @@
             android:textSize="20sp" />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/etDescription"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView_etDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingBottom="25dp"
-            android:paddingTop="10dp"
-            android:text="-"
-            android:textSize="20sp" />
-
-    </LinearLayout>
     <Button
         android:id="@+id/btnReturn"
         android:layout_width="match_parent"

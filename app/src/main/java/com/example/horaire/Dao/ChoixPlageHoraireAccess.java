@@ -1,4 +1,4 @@
-package com.example.horaire.Dao;
+package com.example.horaire.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

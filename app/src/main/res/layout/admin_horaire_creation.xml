@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:background="@color/white"
-    tools:context=".admin.HoraireCreationActivity"
+    tools:context=".admin.AdminHoraireCreationActivity"
 
     >
 
@@ -23,11 +23,12 @@
     <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:text="Nombre d'effectif"
+        android:text="@string/nbEmployeHoraire"
         android:id="@+id/textAdmin"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/create_description"/>
+        android:layout_below="@id/create_description"
+        android:layout_marginLeft="20dp" />
     <Spinner
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -37,7 +38,8 @@
         android:layout_toRightOf="@id/textAdmin"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/create_description"/>
+        android:layout_below="@id/create_description"
+        android:layout_marginLeft="20dp" />
 
 
 
@@ -52,9 +54,10 @@
         android:clickable="true"
         android:background="@drawable/transparent_date_bordered_button"
 
-        android:text="Date"
+        android:text="@string/dateHoraire"
         android:id="@+id/create_date"
-        android:textColor="@color/design_default_color_primary"/>
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="25dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,9 +67,10 @@
         android:clickable="true"
         android:background="@drawable/transparent_date_bordered_button"
         android:layout_marginStart="20dp"
-        android:text="Heure de début"
+        android:text="@string/timeBeginHoraire"
         android:id="@+id/create_heure_debut"
-        android:textColor="@color/design_default_color_primary"/>
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="20dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,9 +80,10 @@
         android:clickable="true"
         android:background="@drawable/transparent_date_bordered_button"
         android:layout_marginStart="20dp"
-        android:text="Heure de fin"
+        android:text="@string/timeEndHoraire"
         android:id="@+id/create_heure_fin"
-        android:textColor="@color/design_default_color_primary"/>
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="20dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +91,7 @@
         android:clickable="true"
         android:background="@drawable/transparent_bg_bordered_button"
 
-        android:text="Save"
+        android:text="@string/btnSave"
         android:id="@+id/btnSave"
         android:textColor="@color/primary"/>
 
@@ -95,32 +100,35 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:hint="Date choisie"
+         android:hint="@string/dateChoixHoraire"
         android:id="@+id/editDate"
         android:enabled="false"
         android:textColor="@color/primary"
         android:layout_marginTop="25dp"
         android:layout_marginStart="16dp"
-        android:layout_below="@id/btnSave"/>
+        android:layout_below="@id/btnSave"
+        android:layout_marginLeft="16dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Heure de début choisie"
+        android:hint="@string/timeChoixBeginHoraire"
         android:enabled="false"
         android:textColor="@color/primary"
         android:id="@+id/editHeureDebut"
         android:layout_marginTop="25dp"
         android:layout_marginStart="16dp"
-        android:layout_below="@id/editDate"/>
+        android:layout_below="@id/editDate"
+        android:layout_marginLeft="16dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Heure de début choisie"
+        android:hint="@string/timeChoixEndHoraire"
         android:enabled="false"
         android:textColor="@color/primary"
         android:id="@+id/editHeureFin"
         android:layout_marginTop="25dp"
         android:layout_marginStart="16dp"
-        android:layout_below="@id/editHeureDebut"/>
+        android:layout_below="@id/editHeureDebut"
+        android:layout_marginLeft="16dp" />
 
 </RelativeLayout>

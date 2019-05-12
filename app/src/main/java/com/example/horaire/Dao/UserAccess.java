@@ -1,4 +1,4 @@
-package com.example.horaire.Dao;
+package com.example.horaire.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -22,7 +22,7 @@ public interface UserAccess {
     @Query("SELECT * FROM User WHERE _id = :id")
     User getUser(int id);
     @Query("SELECT * FROM User WHERE userID = :userId AND pwd = :pwd")
-    User getUser(String userId,String pwd);
+    User getUser(String userId, String pwd);
     @Update()
     int updateUser(User user);
     @Delete

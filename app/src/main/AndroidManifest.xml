@@ -24,20 +24,16 @@
         </activity>
         <activity android:name=".user.UserCenterActivity" />
         <activity android:name=".user.UserHoraireViewActivity"/>
-        <activity android:name=".user.HoraireViewDetailActivity"/>
-        <activity android:name=".user.HoraireChoiceActivity"/>
+        <activity android:name=".user.UserHoraireViewDetailActivity"/>
+        <activity android:name=".user.UserHoraireChoiceActivity"/>
 
         <activity android:name=".admin.AdminCenterActivity"/>
 
         <activity android:name=".admin.AdminHoraireViewActivity"/>
-        <activity android:name=".admin.EmployeDetailActivity"/>
-        <activity android:name=".admin.EmployeCreationActivity"/>
-        <activity android:name=".admin.EmployeViewActivity"
+        <activity android:name=".admin.AdminEmployeCreationActivity"/>
+        <activity android:name=".admin.AdminEmployeViewActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".admin.HoraireCreationActivity"/>
-        <activity android:name=".admin.horairecreation.HoraireCreationAddActivity"/>
-        <activity android:name=".admin.horairecreation.HoraireCreationDetailActivity"/>
-        <activity android:name=".admin.horairecreation.HoraireCreationEditActivity"/>
+        <activity android:name=".admin.AdminHoraireCreationActivity"/>
     </application>
 
 </manifest>
