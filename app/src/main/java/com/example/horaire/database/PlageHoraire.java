@@ -1,6 +1,5 @@
 package com.example.horaire.database;
 
-
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -25,24 +24,38 @@ public class PlageHoraire implements Parcelable {
     Time heureFin;
     @ColumnInfo(name = "effectif")
     int effectif;
+    @ColumnInfo(name = "placesDisponibles")
+    int placesDisponibles;
+    @ColumnInfo(name = "actif")
+    boolean actif;
 
-    //public PlageHoraire(){}
 
-    public PlageHoraire(String description,Date date,Time heureDebut,Time heureFin,int effectif) {
+    public PlageHoraire(String description, Date date, Time heureDebut, Time heureFin, int effectif) {
         setDescription(description);
         setDate(date);
         setHeureDebut(heureDebut);
         setHeureFin(heureFin);
         setEffectif(effectif);
+        setPlacesDisponibles(effectif);
+        setActif(true);
+    }
+
+    public PlageHoraire(String description, Date date, Time heureDebut, Time heureFin, int effectif, int placesDisponibles, boolean actif) {
+        this.description = description;
+        this.date = date;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.effectif = effectif;
+        this.placesDisponibles = placesDisponibles;
+        this.actif = actif;
     }
 
     protected PlageHoraire(Parcel in) {
         _id = in.readLong();
         description = in.readString();
         effectif = in.readInt();
-        date = new Date(in.readLong());
-        heureDebut = new Time(in.readLong());
-        heureFin = new Time(in.readLong());
+        placesDisponibles = in.readInt();
+        actif = in.readByte() != 0;
     }
 
     @Override
@@ -50,9 +63,8 @@ public class PlageHoraire implements Parcelable {
         dest.writeLong(_id);
         dest.writeString(description);
         dest.writeInt(effectif);
-        dest.writeLong(date.getTime());
-        dest.writeLong(heureDebut.getTime());
-        dest.writeLong(heureFin.getTime());
+        dest.writeInt(placesDisponibles);
+        dest.writeByte((byte) (actif ? 1 : 0));
     }
 
     @Override
@@ -118,5 +130,31 @@ public class PlageHoraire implements Parcelable {
 
     public void setEffectif(int effectif) {
         this.effectif = effectif;
+    }
+
+    public int getPlacesDisponibles() {
+        return placesDisponibles;
+    }
+
+    public void setPlacesDisponibles(int placesDisponibles) {
+        this.placesDisponibles = placesDisponibles;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
+    @Override
+    public String toString() {
+        return  "description='" + description + "\n" +
+                "date=" + date + "\n" +
+                "debut=" + heureDebut + "\t" +
+                "fin=" + heureFin + "\n" +
+                 "Effectif=" + effectif+ "\n" +
+                "Places disponible=" + placesDisponibles;
     }
 }

@@ -2,18 +2,14 @@ package com.example.horaire.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-
-
-@Entity(tableName = "choixPlageHoraire", foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "_id",
+@Entity(tableName = "choixPlageHoraire"/*, foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "_id",
         childColumns = "userId", onDelete = CASCADE),
         @ForeignKey(entity = PlageHoraire.class, parentColumns = "_id",
-                childColumns = "plageHoraireId", onDelete = CASCADE)})
+                childColumns = "plageHoraireId", onDelete = CASCADE)}*/)
 public class ChoixPlageHoraire implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long _id;
@@ -23,12 +19,21 @@ public class ChoixPlageHoraire implements Parcelable {
     long plageHoraireId;
     @ColumnInfo(name = "priority")
     int priority;
+    @ColumnInfo(name = "actif")
+    boolean actif;
 
-    //public ChoixPlageHoraire(){}
 
     public ChoixPlageHoraire(long userId, long plageHoraireId) {
         setUserId(userId);
         setPlageHoraireId(plageHoraireId);
+        setActif(true);
+    }
+
+    public ChoixPlageHoraire(long userId, long plageHoraireId, int priority, boolean actif) {
+        this.userId = userId;
+        this.plageHoraireId = plageHoraireId;
+        this.priority = priority;
+        this.actif = actif;
     }
 
     protected ChoixPlageHoraire(Parcel in) {
@@ -36,6 +41,7 @@ public class ChoixPlageHoraire implements Parcelable {
         userId = in.readLong();
         plageHoraireId = in.readLong();
         priority = in.readInt();
+        actif = in.readByte() != 0;
     }
 
     @Override
@@ -44,6 +50,7 @@ public class ChoixPlageHoraire implements Parcelable {
         dest.writeLong(userId);
         dest.writeLong(plageHoraireId);
         dest.writeInt(priority);
+        dest.writeByte((byte) (actif ? 1 : 0));
     }
 
     @Override
@@ -93,5 +100,13 @@ public class ChoixPlageHoraire implements Parcelable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public boolean getActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
     }
 }

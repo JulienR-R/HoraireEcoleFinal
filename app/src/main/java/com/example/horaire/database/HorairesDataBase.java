@@ -1,5 +1,6 @@
 package com.example.horaire.database;
 
+
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
@@ -12,7 +13,7 @@ import com.example.horaire.dao.PlageHoraireAccess;
 import com.example.horaire.dao.UserAccess;
 
 @Database(entities = {User.class,PlageHoraire.class,ChoixPlageHoraire.class,AttributionPlageHoraire.class},
-        version = 2, exportSchema = false)
+        version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class HorairesDataBase extends RoomDatabase {
     public abstract UserAccess userAccess();
@@ -26,7 +27,7 @@ public abstract class HorairesDataBase extends RoomDatabase {
             synchronized (HorairesDataBase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            HorairesDataBase.class, "imagesDb.db")
+                            HorairesDataBase.class, "horairesDb.db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

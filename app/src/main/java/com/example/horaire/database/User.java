@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-@Entity(tableName = "user", indices = {@Index(value = "userId", unique = true)})
+@Entity(tableName = "users", indices = {@Index(value = "userId", unique = true)})
 public class User implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long _id;
@@ -24,15 +24,21 @@ public class User implements Parcelable {
     @ColumnInfo(name = "isAdmin")
     boolean isAdmin;
 
-    public User(){}
 
-    public User(String userId, String pwd, int senority, String prenom, String nom) {
+    public User(String userId, String pwd) {
         setUserId(userId);
         setPwd(pwd);
-        setSeniority(senority);
-        setNom(nom);
-        setPrenom(prenom);
+        setSeniority(0);
         setIsAdmin(false);
+    }
+
+    public User(String userId, String pwd, String nom, String prenom, int seniority, boolean isAdmin) {
+        this.userId = userId;
+        this.pwd = pwd;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.seniority = seniority;
+        this.isAdmin = isAdmin;
     }
 
     protected User(Parcel in) {

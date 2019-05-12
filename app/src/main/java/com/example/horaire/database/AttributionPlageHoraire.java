@@ -2,14 +2,13 @@ package com.example.horaire.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-@Entity(tableName = "attributionPlageHoraire", foreignKeys = @ForeignKey(entity = ChoixPlageHoraire.class, parentColumns = "_id",
-        childColumns = "idChoixPlageHoraire", onDelete = CASCADE))
+@Entity(tableName = "attributionPlageHoraire"/*, foreignKeys = @ForeignKey(entity = ChoixPlageHoraire.class, parentColumns = "_id",
+        childColumns = "idChoixPlageHoraire", onDelete = CASCADE)*/)
 public class AttributionPlageHoraire implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long _id;
@@ -17,13 +16,15 @@ public class AttributionPlageHoraire implements Parcelable {
     public long idChoixPlageHoraire;
     @ColumnInfo(name = "approved")
     boolean approved;
+    String result,titre = "";
 
-    //public AttributionPlageHoraire(){}
 
     public AttributionPlageHoraire(long idChoixPlageHoraire, boolean approved) {
-        setPlageHoraireId(idChoixPlageHoraire);
+        setIdChoixPlageHoraire(idChoixPlageHoraire);
         setApproved(approved);
     }
+
+
 
     protected AttributionPlageHoraire(Parcel in) {
         _id = in.readLong();
@@ -63,11 +64,11 @@ public class AttributionPlageHoraire implements Parcelable {
         this._id = _id;
     }
 
-    public long getPlageHoraireId() {
+    public long getIdChoixPlageHoraire() {
         return idChoixPlageHoraire;
     }
 
-    public void setPlageHoraireId(long plageHoraireId) {
+    public void setIdChoixPlageHoraire(long plageHoraireId) {
         this.idChoixPlageHoraire = plageHoraireId;
     }
 
@@ -78,4 +79,26 @@ public class AttributionPlageHoraire implements Parcelable {
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
+
+    @Override
+    public String toString() {
+        return titre;
+    }
+
+    public String toString(final Context ct) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HorairesDataBase db = HorairesDataBase.getInstance(ct);
+                ChoixPlageHoraire choixPlageHoraire = db.choixPlageHoraireAccess()
+                        .getChoixPlageHoraire((int)getIdChoixPlageHoraire());
+                PlageHoraire plageHoraire = db.plageHoraireAccess()
+                        .getPlageHoraire((int) choixPlageHoraire.getPlageHoraireId());
+                result = plageHoraire.getDescription() + (approved? "approuvé" : "refused");
+                titre = plageHoraire.getDescription();
+            }
+        }).start();
+        return result;
+    }
+
 }
