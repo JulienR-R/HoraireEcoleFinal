@@ -37,6 +37,14 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
         setToolbar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filtre = new IntentFilter(AutoScheduledUsersToShifts.ACTION);
+        receiverFromService = new ReceiverFromService();
+        registerReceiver(receiverFromService,filtre);    
+    }
+    
     public void ButtonAdminCenter(){
 
         btnAdminHoraireView = findViewById(R.id.admin_horaireview);
@@ -96,7 +104,24 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
                     break;
 
                 case R.id.nav_script:
-
+                    if(menuItem.getTitle().toString().equals("Lancer attributions")){
+                    IntentFilter filtre = new IntentFilter(AutoScheduledUsersToShifts.ACTION);
+                    receiverFromService = new ReceiverFromService();
+                    registerReceiver(receiverFromService,filtre);
+                    Intent activerAttributions = new Intent(getBaseContext(), AutoScheduledUsersToShifts.class);
+                    pi = PendingIntent.getService(getApplicationContext(), 0,
+                            activerAttributions, PendingIntent.FLAG_CANCEL_CURRENT);
+                    am = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    long startTime = SystemClock.elapsedRealtime();
+                    am.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,AlarmManager.INTERVAL_FIFTEEN_MINUTES / 15, pi);
+                    menuItem.setTitle("Arrêter attributions");
+                }
+                else{
+                    unregisterReceiver(receiverFromService);
+                    am.cancel(pi);
+                    stopService(new Intent(getBaseContext(),AutoScheduledUsersToShifts.class));
+                    menuItem.setTitle("Lancer attributions");
+                }
                     break;
             }
 
