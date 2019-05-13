@@ -32,15 +32,7 @@ public class User implements Parcelable {
         setIsAdmin(false);
     }
 
-    public User(String userId, String pwd, String nom, String prenom, int seniority, boolean isAdmin) {
-        this.userId = userId;
-        this.pwd = pwd;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.seniority = seniority;
-        this.isAdmin = isAdmin;
-    }
-
+ 
     protected User(Parcel in) {
         _id = in.readLong();
         userId = in.readString();
