@@ -16,7 +16,7 @@ public class AttributionPlageHoraire implements Parcelable {
     public long idChoixPlageHoraire;
     @ColumnInfo(name = "approved")
     boolean approved;
-    String result,titre = "";
+    public String result,titre = "";
 
 
     public AttributionPlageHoraire(long idChoixPlageHoraire, boolean approved) {
