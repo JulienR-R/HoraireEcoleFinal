@@ -1,19 +1,19 @@
-
 package com.example.horaire;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.horaire.admin.AdminCenterActivity;
 import com.example.horaire.database.HorairesDataBase;
@@ -21,25 +21,40 @@ import com.example.horaire.database.PopulateDatabase;
 import com.example.horaire.database.User;
 import com.example.horaire.user.UserCenterActivity;
 
-
 public class LoginActivity extends AppCompatActivity {
-    Toolbar toolbar;
-    EditText email;
-    EditText pwd;
-    Button loginButton;
-    User currentUser;
-    CheckBox checkBoxConnected;
+
+
+    private RelativeLayout relativeLayout1, relativeLayout2;
+    private TextView textView;
+    private EditText email;
+    private EditText pwd;
+    private Button loginButton;
+    private User currentUser;
+    private Switch aSwitch;
     private SharedPreferences sharedPreferences;
     private static final int MESSAGE_POST_EXECUTE = 3;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+        relativeLayout1.setVisibility(View.VISIBLE);
+            relativeLayout2.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
+        }
+    };
 
-        super.onCreate(savedInstanceState);
-        //si le user avait check stayConnected on saute le login
+    @Override
+    protected  void onCreate(Bundle savedInstance){
+        super.onCreate(savedInstance);
+
+
+
+
+
         goToMainActivity();
 
-        //populate database
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -57,12 +72,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loadPage(){
         setContentView(R.layout.login);
-        toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setTitle(R.string.title_login);
+        handler.postDelayed(runnable,4000 );
+
+
+
+
+        relativeLayout1 = findViewById(R.id.rellay1);
+        relativeLayout2 = findViewById(R.id.rellay2);
+        textView =  findViewById(R.id.titre);
         email = findViewById(R.id.input_email);
         pwd = findViewById(R.id.input_password);
-        checkBoxConnected = findViewById(R.id.stayConnected);
+        aSwitch = findViewById(R.id.laSwitch);
+
+
         loginButton = findViewById(R.id.btn_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +103,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     };
+
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -106,11 +130,13 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        //on store le statut du user s'il veut rester connecté
+
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isAdmin", currentUser.getIsAdmin());
-        editor.putBoolean("stayConnected",checkBoxConnected.isChecked());
+
+        editor.putBoolean("stayConnected",aSwitch.isChecked());
+        editor.putLong("id",currentUser.get_id() );
         editor.apply();
         Intent intent = currentUser.getIsAdmin()? new Intent(this, AdminCenterActivity.class):
                 new Intent(this, UserCenterActivity.class) ;
