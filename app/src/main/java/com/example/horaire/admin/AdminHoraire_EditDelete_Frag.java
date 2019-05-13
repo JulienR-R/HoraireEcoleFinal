@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.horaire.R;
 import com.example.horaire.database.HorairesDataBase;
@@ -123,28 +124,34 @@ public class AdminHoraire_EditDelete_Frag extends Fragment {
     View.OnClickListener SaveHoraire = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(     !editDescription.getText().toString().isEmpty() &&
+                    !editDate.getText().toString().isEmpty() &&
+                    !editEffectif.getText().toString().isEmpty() &&
+                    !editHeureDebut.getText().toString().isEmpty() &&
+                    !editHeureFin.getText().toString().isEmpty()){
+                plageHoraire.setDescription(editDescription.getText().toString());
 
-            plageHoraire.setDescription(editDescription.getText().toString());
+
+                try {
+                    java.util.Date df = new SimpleDateFormat("yyyy-MM-dd").parse(editDate.getText().toString());
+                    java.sql.Date du = convertUtilToSql(df);
+                    plageHoraire.setDate(du);
+                }catch (ParseException e){
+                }
+                plageHoraire.setEffectif(Integer.parseInt(editEffectif.getText().toString()));
 
 
-            try {
-                java.util.Date df = new SimpleDateFormat("yyyy-MM-dd").parse(editDate.getText().toString());
-                java.sql.Date du = convertUtilToSql(df);
-                plageHoraire.setDate(du);
-            }catch (ParseException e){
+
+                plageHoraire.setHeureDebut(Time.valueOf(editHeureDebut.getText().toString()));
+                plageHoraire.setHeureFin(Time.valueOf(editHeureDebut.getText().toString()));
+
+                UpdateHoraireAsync updateHoraireAsync = new UpdateHoraireAsync(AdminHoraire_EditDelete_Frag.this);
+
+                updateHoraireAsync.execute();
+            }else{
+                String temp = getString(R.string.message_error);
+                Toast.makeText(getActivity(), temp, Toast.LENGTH_SHORT).show();
             }
-            plageHoraire.setEffectif(Integer.parseInt(editEffectif.getText().toString()));
-
-
-
-            plageHoraire.setHeureDebut(Time.valueOf(editHeureDebut.getText().toString()));
-            plageHoraire.setHeureFin(Time.valueOf(editHeureDebut.getText().toString()));
-
-            UpdateHoraireAsync updateHoraireAsync = new UpdateHoraireAsync(AdminHoraire_EditDelete_Frag.this);
-
-            updateHoraireAsync.execute();
-
-
 
         }
     };

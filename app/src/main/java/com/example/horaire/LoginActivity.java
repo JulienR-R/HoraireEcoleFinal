@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import com.example.horaire.user.UserCenterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+    private Toolbar toolbar;
     private RelativeLayout relativeLayout1, relativeLayout2;
     private TextView textView;
     private EditText email;
@@ -72,6 +73,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loadPage(){
         setContentView(R.layout.login);
+        toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        setTitle(R.string.title_login);
         handler.postDelayed(runnable,4000 );
 
 

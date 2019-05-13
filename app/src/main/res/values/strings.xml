@@ -116,4 +116,12 @@
     <string name="dateChoixHoraire">Date choisie</string>
     <string name="timeChoixBeginHoraire">Heure de début choisie</string>
     <string name="timeChoixEndHoraire">Heure de fin choisie</string>
+
+    <!-- Horaire Informations -->
+    <string name="etDate">Date : </string>
+    <string name="etTimeBegin">Heure de début : </string>
+    <string name="etTimeEnd">Heure de fin : </string>
+    <string name="etEmploye">Nombre d\'employé : </string>
+    <string name="etPlace">Endroit du travail : </string>
+    <string name="etDescription">Description du travail : </string>
 </resources>

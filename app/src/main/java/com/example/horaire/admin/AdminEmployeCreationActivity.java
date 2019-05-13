@@ -1,4 +1,4 @@
-﻿package com.example.horaire.admin;
+package com.example.horaire.admin;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

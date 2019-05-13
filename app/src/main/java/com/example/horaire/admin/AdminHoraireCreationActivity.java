@@ -1,4 +1,4 @@
-﻿package com.example.horaire.admin;
+package com.example.horaire.admin;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -31,7 +31,7 @@ import java.util.Date;
 
 public class AdminHoraireCreationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener  {
 
-private Toolbar toolbar;
+    private Toolbar toolbar;
     private EditText editDescription;
     private Button editHeureDebut;
     private Button editHeureFin;

@@ -111,7 +111,7 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
     View.OnClickListener SaveUser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-	if(!editNom.getText().toString().isEmpty() || !editNom.getText().toString().isEmpty() || !editSenority.getText().toString().isEmpty() || !editEmail.getText().toString().isEmpty()){
+	if(!editNom.getText().toString().isEmpty() && !editNom.getText().toString().isEmpty() && !editSenority.getText().toString().isEmpty() && !editEmail.getText().toString().isEmpty()){
                 user.setPrenom(editPrenom.getText().toString());
                 user.setNom(editNom.getText().toString());
                 user.setSeniority(Integer.parseInt(editSenority.getText().toString()));

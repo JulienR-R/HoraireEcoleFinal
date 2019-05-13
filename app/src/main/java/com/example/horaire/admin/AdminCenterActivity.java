@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.horaire.Login;
+import com.example.horaire.LoginActivity;
 import com.example.horaire.R;
 
 
@@ -143,7 +143,7 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("stayConnected",false);
                         editor.apply();
-                      Intent i = new Intent(AdminCenterActivity.this, Login.class);
+                      Intent i = new Intent(AdminCenterActivity.this, LoginActivity.class);
                       startActivity(i);
                     }
                 }).create().show();
