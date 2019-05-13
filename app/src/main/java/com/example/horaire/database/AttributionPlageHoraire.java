@@ -98,8 +98,8 @@ public class AttributionPlageHoraire implements Parcelable {
                         .getChoixPlageHoraire((int)getIdChoixPlageHoraire());
                 PlageHoraire plageHoraire = db.plageHoraireAccess()
                         .getPlageHoraire((int) choixPlageHoraire.getPlageHoraireId());
-                result = plageHoraire.getDescription() + (approved? "approuvé" : "refused");
-                titre = plageHoraire.getDescription();
+                result = plageHoraire.toString() + (approved? "approuvé" : "refused");
+                titre = plageHoraire.getDescription() + (approved? "approuvé" : "refused");
             }
         }).start();
     }
