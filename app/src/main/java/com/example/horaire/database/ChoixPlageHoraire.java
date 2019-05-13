@@ -29,12 +29,6 @@ public class ChoixPlageHoraire implements Parcelable {
         setActif(true);
     }
 
-    public ChoixPlageHoraire(long userId, long plageHoraireId, int priority, boolean actif) {
-        this.userId = userId;
-        this.plageHoraireId = plageHoraireId;
-        this.priority = priority;
-        this.actif = actif;
-    }
 
     protected ChoixPlageHoraire(Parcel in) {
         _id = in.readLong();
