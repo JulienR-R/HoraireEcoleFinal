@@ -24,8 +24,6 @@ public interface UserAccess {
     User getUser(int id);
     @Query("SELECT * FROM users WHERE userID = :userId AND pwd = :pwd")
     User getUser(String userId, String pwd);
-    @Query("SELECT * FROM attributionPlageHoraire WHERE ")
-    List<AttributionPlageHoraire> getUserAttributions(int idUser);
     @Update()
     int updateUser(User user1);
     @Delete
