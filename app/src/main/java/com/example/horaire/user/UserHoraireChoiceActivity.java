@@ -119,7 +119,7 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
 
             for (int i = 0; i < plageHoraireList.size(); i++) {
-                arrayList.add(new UserHoraireChoice_Item(R.drawable.czkNo, plageHoraireList.get(i).getDescription(), df.format(plageHoraireList.get(i).getDate()), String.valueOf(plageHoraireList.get(i).getHeureDebut()), String.valueOf(plageHoraireList.get(i).getHeureFin())));
+                arrayList.add(new UserHoraireChoice_Item(R.drawable.czkno, plageHoraireList.get(i).getDescription(), df.format(plageHoraireList.get(i).getDate()), String.valueOf(plageHoraireList.get(i).getHeureDebut()), String.valueOf(plageHoraireList.get(i).getHeureFin())));
 
             }
             adapter.submitList(arrayList);
@@ -133,10 +133,10 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
     private void changeImage(UserHoraireChoice_Item item) {
 
-        if (item.getmImageResource() == R.drawable.czkNo) {
-            item.setmImageResource(R.drawable.czkYes);
+        if (item.getmImageResource() == R.drawable.czkno) {
+            item.setmImageResource(R.drawable.czkyes);
         } else {
-            item.setmImageResource(R.drawable.czkNo);
+            item.setmImageResource(R.drawable.czkno);
         }
 
         adapter.submitList(arrayList);
@@ -152,12 +152,12 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
                     Toast.makeText(this, "Checkbox "+v.getTag(), Toast.LENGTH_SHORT).show();
                     // changer le nombre d'heure choisi (R.id.timeInfo.setText(nbrHeure))
                     ImageView checkbox= (ImageView) v;
-                    if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkNo).getConstantState())) {
+                    if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkno).getConstantState())) {
                         checkbox.setImageResource(R.drawable.czkmedium);
                     } else if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkmedium).getConstantState())) {
-                        checkbox.setImageResource(R.drawable.czkYes);
-                    } else if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkYes).getConstantState())) {
-                        checkbox.setImageResource(R.drawable.czkNo);
+                        checkbox.setImageResource(R.drawable.czkyes);
+                    } else if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkyes).getConstantState())) {
+                        checkbox.setImageResource(R.drawable.czkno);
                     }
                     break;
             }
