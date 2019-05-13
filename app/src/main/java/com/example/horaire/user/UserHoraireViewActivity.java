@@ -3,12 +3,12 @@ package com.example.horaire.user;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import com.example.horaire.R;
 
@@ -30,10 +30,7 @@ public class UserHoraireViewActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemClicked = (String) parent.getItemAtPosition(position);
-                Intent intentHoraireDetail = new Intent(UserHoraireViewActivity.this, UserHoraireViewDetailActivity.class);
-                //put extra to get the horaire
-                startActivity(intentHoraireDetail);
+
             }
         });
         setToolbar();

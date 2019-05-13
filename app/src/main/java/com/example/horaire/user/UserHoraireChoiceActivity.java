@@ -1,6 +1,8 @@
 package com.example.horaire.user;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.horaire.R;
+import com.example.horaire.database.ChoixPlageHoraire;
 import com.example.horaire.database.HorairesDataBase;
 import com.example.horaire.database.PlageHoraire;
 
@@ -29,10 +32,12 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
     private UserHoraireChoice_Adapter adapter = new UserHoraireChoice_Adapter();
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
+    private FloatingActionButton floatingActionButton;
+    private List<UserHoraireChoice_Item> listChoix;
 
 
     public void onCreate(Bundle savedInstanceState) {
-      //  ListView list;
+
 
 
         super.onCreate(savedInstanceState);
@@ -40,65 +45,61 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
 
         recyclerView = findViewById(R.id.recyclerView);
-
+        floatingActionButton = findViewById(R.id.saveChoice);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         PopulateHoraireChoices populateHoraireChoices = new PopulateHoraireChoices();
         populateHoraireChoices.execute();
+        floatingActionButton.setOnClickListener(SauvegarderChangements);
 
-        /*
-        setContentView(R.layout.user_horairechoice_view);
-        list = findViewById(R.id.list_plageschoice);
-        String[] values = new String[] { "George", "Mickael", "Robert",
-                "Jean", "Elizabeth", "Thérèse" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.user_horairechoice_item, R.id.infos, values){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View row =  super.getView(position, convertView, parent);
-
-                View checkbox = row.findViewById(R.id.checkBox);
-                checkbox.setTag(checkbox);
-                checkbox.setOnClickListener(UserHoraireChoiceActivity.this);
-                return row;
-            }
-        };
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(this);
-*/
-        final FloatingActionButton btnConfirm = findViewById(R.id.saveChoice);
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // vérifie minimum une colonne est cochée
-                notifyConfirm();
-                //sinon, toast expliquant l'erreur (Tu as oublié de cocher!)
-            }
-        });
-
-
-        /*final Button btnCancel = findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        */
         setToolbar();
 
         adapter.setOnItemClickListener(new UserHoraireChoice_Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(UserHoraireChoice_Item item) {
                 changeImage(item);
+
+                if(listChoix.contains(item)) {
+                    listChoix.remove(item);
+                }else{
+                    listChoix.add(item);
+                }
+
+
             }
 
 
         });
     }
 
+    View.OnClickListener SauvegarderChangements = new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
 
+
+            new AlertDialog.Builder(view.getContext())
+                    .setTitle("Sauvegarder")
+                    .setMessage("Êtes-vous sûr de vos choix?")
+                    .setNegativeButton(R.string.btnCancel, null)
+                    .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            ConfirmChoices confirmChoices = new ConfirmChoices();
+                            confirmChoices.execute();
+
+
+
+
+                            finish();
+                        }
+                    }).create().show();
+
+
+
+
+    }
+};
 
     private class PopulateHoraireChoices extends AsyncTask<Void,Void,Void> {
 
@@ -119,7 +120,46 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
 
             for (int i = 0; i < plageHoraireList.size(); i++) {
-                arrayList.add(new UserHoraireChoice_Item(R.drawable.czkno, plageHoraireList.get(i).getDescription(), df.format(plageHoraireList.get(i).getDate()), String.valueOf(plageHoraireList.get(i).getHeureDebut()), String.valueOf(plageHoraireList.get(i).getHeureFin())));
+                arrayList.add(new UserHoraireChoice_Item( R.drawable.czklow, plageHoraireList.get(i).getDescription(), df.format(plageHoraireList.get(i).getDate()), String.valueOf(plageHoraireList.get(i).getHeureDebut()), String.valueOf(plageHoraireList.get(i).getHeureFin())));
+
+            }
+            adapter.submitList(arrayList);
+            recyclerView.setAdapter(adapter);
+
+
+
+        }
+
+    }
+
+
+    private class ConfirmChoices extends AsyncTask<Void,Void,Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(UserHoraireChoiceActivity.this);
+
+            SharedPreferences preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+            int id = preferences.getInt("id", 0);
+
+            for(int i = 0; i < listChoix.size(); i++){
+            horairesDataBase.choixPlageHoraireAccess().insertChoixPlageHoraire(new ChoixPlageHoraire(id , listChoix.get(i).getmPlageHoraireId()));
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+
+
+            for (int i = 0; i < plageHoraireList.size(); i++) {
+                arrayList.add(new UserHoraireChoice_Item(R.drawable.czklow, plageHoraireList.get(i).getDescription(), df.format(plageHoraireList.get(i).getDate()), String.valueOf(plageHoraireList.get(i).getHeureDebut()), String.valueOf(plageHoraireList.get(i).getHeureFin())));
 
             }
             adapter.submitList(arrayList);
@@ -133,46 +173,19 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
     private void changeImage(UserHoraireChoice_Item item) {
 
-        if (item.getmImageResource() == R.drawable.czkno) {
-            item.setmImageResource(R.drawable.czkyes);
+        if (item.getmImageResource() == R.drawable.czklow) {
+            item.setmImageResource(R.drawable.czkhigh);
         } else {
-            item.setmImageResource(R.drawable.czkno);
+            item.setmImageResource(R.drawable.czklow);
         }
+
+
 
         adapter.submitList(arrayList);
         recyclerView.setAdapter(adapter);
     }
 
-    /*
 
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.checkBox:
-                    Toast.makeText(this, "Checkbox "+v.getTag(), Toast.LENGTH_SHORT).show();
-                    // changer le nombre d'heure choisi (R.id.timeInfo.setText(nbrHeure))
-                    ImageView checkbox= (ImageView) v;
-                    if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkno).getConstantState())) {
-                        checkbox.setImageResource(R.drawable.czkmedium);
-                    } else if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkmedium).getConstantState())) {
-                        checkbox.setImageResource(R.drawable.czkyes);
-                    } else if (checkbox.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.czkyes).getConstantState())) {
-                        checkbox.setImageResource(R.drawable.czkno);
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            Toast.makeText(this, "Item Click "+position, Toast.LENGTH_SHORT).show();
-            Intent intentHoraireDetail = new Intent(UserHoraireChoiceActivity.this, UserHoraireViewDetailActivity.class);
-            //put extra to get the horairedetail with item
-            startActivity(intentHoraireDetail);
-        }
-
-
-    */
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -196,20 +209,5 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
 
 
-    public void notifyConfirm() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.title_confirmation)
-                .setMessage(R.string.message_horairechoice_final)
-                .setNegativeButton(R.string.btnCancel, null)
-                .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        // envoyer à la base de donnée PERMANENTE
 
-
-
-
-                        finish();
-                    }
-                }).create().show();
-    }
 }

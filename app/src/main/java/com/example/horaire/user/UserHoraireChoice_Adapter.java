@@ -52,9 +52,9 @@ public class UserHoraireChoice_Adapter extends ListAdapter<UserHoraireChoice_Ite
         UserHoraireChoice_Item item = getItem(position);
         holder.imageView.setImageResource(item.getmImageResource());
         holder.tDescription.setText(item.getmDescription());
-        holder.tDate.setText("Date : "+item.getmHeureDebut());
-        holder.tHeureDebut.setText("Heure début : " + item.getmHeureDebut());
-        holder.tHeureFin.setText("Heure fini : " + item.getmHeureFin());
+        holder.tDate.setText("Date: "+item.getmDate());
+        holder.tHeureDebut.setText("Heure début: " + item.getmHeureDebut());
+        holder.tHeureFin.setText("Heure fini: " + item.getmHeureFin());
 
     }
 
