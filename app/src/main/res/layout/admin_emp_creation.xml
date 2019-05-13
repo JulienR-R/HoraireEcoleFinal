@@ -47,7 +47,7 @@
         android:hint="@string/passwordEmp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:layout_below="@id/create_email"/>
 
     <TextView

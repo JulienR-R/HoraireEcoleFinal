@@ -1,4 +1,4 @@
-package com.example.horaire.admin;
+﻿package com.example.horaire.admin;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -114,7 +114,17 @@ private Toolbar toolbar;
     View.OnClickListener Sauvegarder = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+	if(     !editDescription.getText().toString().isEmpty() &&
+                    editEffectif.getSelectedItem().toString() != null &&
+                    !dateChoisie.getText().toString().isEmpty() &&
+                    !heureDebut.getText().toString().isEmpty() &&
+                    !heureFin.getText().toString().isEmpty()){
+                notifyConfirm();
+            }
+            else{
+                String temp = getString(R.string.message_error);
+                Toast.makeText(AdminHoraireCreationActivity.this, temp, Toast.LENGTH_SHORT).show();
+            }
         }
 
 

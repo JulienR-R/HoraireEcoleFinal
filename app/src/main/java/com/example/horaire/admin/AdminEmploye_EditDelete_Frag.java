@@ -110,7 +110,7 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
     View.OnClickListener SaveUser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+	if(!editNom.getText().toString().isEmpty() || !editNom.getText().toString().isEmpty() || !editSenority.getText().toString().isEmpty() || !editEmail.getText().toString().isEmpty()){
                 user.setPrenom(editPrenom.getText().toString());
                 user.setNom(editNom.getText().toString());
                 user.setSeniority(Integer.parseInt(editSenority.getText().toString()));
@@ -118,7 +118,10 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
                 UpdateUserAsync updateUserAsync = new UpdateUserAsync(AdminEmploye_EditDelete_Frag.this);
 
                 updateUserAsync.execute();
-
+}else{
+                String temp = getString(R.string.message_error);
+                Toast.makeText(getActivity(), temp, Toast.LENGTH_SHORT).show();
+            }
 
 
         }

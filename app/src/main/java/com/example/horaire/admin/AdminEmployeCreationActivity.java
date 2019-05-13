@@ -1,4 +1,4 @@
-package com.example.horaire.admin;
+﻿package com.example.horaire.admin;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +42,18 @@ public class AdminEmployeCreationActivity extends AppCompatActivity {
     View.OnClickListener Sauvegarder = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+	if(     !createDescription.getText().toString().isEmpty() &&
+                    !createNom.getText().toString().isEmpty()  &&
+                    !createEmail.getText().toString().isEmpty() &&
+                    !createPassword.getText().toString().isEmpty() &&
+                    createSenority.getSelectedItem().toString() != null &&
+                    createAdmin.getSelectedItem().toString() != null){
+                notifyConfirm();
+            }
+            else{
+                String temp = getString(R.string.message_error);
+                Toast.makeText(AdminEmployeCreationActivity.this, temp, Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
