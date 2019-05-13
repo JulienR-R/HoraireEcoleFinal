@@ -41,6 +41,9 @@ public class AdminHoraireCreationActivity extends AppCompatActivity implements D
     private EditText heureDebut;
     private EditText heureFin;
     private Button btnSave;
+    private String sHeureDebut;
+    private String sHeureFin;
+    private boolean clickDetect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +95,7 @@ public class AdminHoraireCreationActivity extends AppCompatActivity implements D
 
             DialogFragment timePicker = new TimePickerFragment();
             timePicker.show(getSupportFragmentManager(), "heureDebut");
-
+            clickDetect = true;
 
         }
 
@@ -106,6 +109,7 @@ public class AdminHoraireCreationActivity extends AppCompatActivity implements D
 
             DialogFragment timePicker = new TimePickerFragment();
             timePicker.show(getSupportFragmentManager(), "heureFin");
+            clickDetect = false;
         }
 
 
@@ -148,7 +152,7 @@ public class AdminHoraireCreationActivity extends AppCompatActivity implements D
 
 
 
-        if(view.getTag() == "heureDebut"){
+        if(clickDetect){
             heureDebut.setText( String.valueOf(hourOfDay + ":" + minuteOfDay ));
         }else{
             heureFin.setText( String.valueOf(hourOfDay + ":" + minuteOfDay ));

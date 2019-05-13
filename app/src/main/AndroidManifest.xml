@@ -24,7 +24,6 @@
         </activity>
         <activity android:name=".user.UserCenterActivity" />
         <activity android:name=".user.UserHoraireViewActivity"/>
-        <activity android:name=".user.UserHoraireViewDetailActivity"/>
         <activity android:name=".user.UserHoraireChoiceActivity"/>
 
         <activity android:name=".admin.AdminCenterActivity"/>

@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.example.horaire.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class UserHoraireChoice_Adapter extends ListAdapter<UserHoraireChoice_Item, UserHoraireChoice_Adapter.Horaire_Choice_Holder> {
 
 

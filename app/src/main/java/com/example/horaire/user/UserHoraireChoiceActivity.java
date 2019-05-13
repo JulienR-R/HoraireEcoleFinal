@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.horaire.R;
 import com.example.horaire.database.ChoixPlageHoraire;
@@ -39,10 +40,9 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_horairechoice_view);
-
+        listChoix = new ArrayList<UserHoraireChoice_Item>();
 
         recyclerView = findViewById(R.id.recyclerView);
         floatingActionButton = findViewById(R.id.saveChoice);
@@ -85,13 +85,17 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
                     .setNegativeButton(R.string.btnCancel, null)
                     .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
+                            if(!listChoix.isEmpty()){
                             ConfirmChoices confirmChoices = new ConfirmChoices();
                             confirmChoices.execute();
+                                finish();
+                            }else{
+                                String temp = getString(R.string.message_error);
+                                Toast.makeText(UserHoraireChoiceActivity.this, temp, Toast.LENGTH_SHORT).show();
+                            }
 
 
 
-
-                            finish();
                         }
                     }).create().show();
 
@@ -116,7 +120,7 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
         @Override
         protected void onPostExecute(Void result) {
-            DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
 
             for (int i = 0; i < plageHoraireList.size(); i++) {
@@ -143,7 +147,7 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
             HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(UserHoraireChoiceActivity.this);
 
             SharedPreferences preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-            int id = preferences.getInt("id", 0);
+            long id = preferences.getLong("id", 0);
 
             for(int i = 0; i < listChoix.size(); i++){
             horairesDataBase.choixPlageHoraireAccess().insertChoixPlageHoraire(new ChoixPlageHoraire(id , listChoix.get(i).getmPlageHoraireId()));
@@ -155,7 +159,7 @@ public class UserHoraireChoiceActivity extends AppCompatActivity  {
 
         @Override
         protected void onPostExecute(Void result) {
-            DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
 
             for (int i = 0; i < plageHoraireList.size(); i++) {
