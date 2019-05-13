@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:background="@color/white"
-    tools:context=".admin.AdminEmploye_EditDelete_Frag">
+    tools:context=".admin.AdminHoraire_EditDelete_Frag">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,36 +18,45 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_prenom"
+        android:id="@+id/edit_description"
 
         android:layout_marginEnd="16dp"
         android:inputType="text"
         android:layout_marginStart="16dp"
         />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_nom"
-        android:layout_below="@id/edit_prenom"
-        android:layout_marginEnd="16dp"
-        android:inputType="text"
-        android:layout_marginStart="16dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_email"
+        android:id="@+id/edit_heureDebut"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:inputType="textEmailAddress"
-        android:layout_below="@id/edit_nom"/>
+        android:inputType="time"
+        android:layout_below="@id/edit_description"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_senority"
+        android:id="@+id/edit_heureFin"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:inputType="time"
+        android:layout_below="@id/edit_heureDebut"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_effectif"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:inputType="number"
-        android:layout_below="@id/edit_email"/>
+        android:layout_below="@id/edit_heureFin"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_date"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:inputType="date"
+        android:layout_below="@id/edit_effectif"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"

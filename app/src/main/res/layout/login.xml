@@ -1,78 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/grad_bg"
+    tools:context=".Login">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:id="@+id/logo"
+          android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_schedule_white"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Collège Durocher St-Lambert "
+            android:layout_below="@id/logo"
+            android:visibility="visible"
+            android:id="@+id/titre"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rellay1"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:layout_below="@id/logo">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="20dp"
+                android:text="Login"
+                android:id="@+id/tv_login"
+                android:textColor="@color/white"
+                android:textSize="30sp"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_login"
+                android:id="@+id/linear1"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   >
 
 
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/AppTheme.Dark" />
+                    android:textAllCaps="true"
+                    android:fontFamily="sans-serif-light"
+                    />
 
-    <LinearLayout
-        android:orientation="vertical"
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_bg"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/input_email"
+
+                    />
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+
+                    android:textAllCaps="true"
+                    android:fontFamily="sans-serif-light"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_bg"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="15dp"
+                    android:inputType="textPassword"
+                    android:paddingRight="15dp"
+                    android:id="@+id/input_password"
+                    android:textColor="@color/white"
+
+                    />
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="50dp"
+                android:text="Login Now"
+                android:layout_below="@id/linear1"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/btn_bg"
+                android:textAllCaps="false"
+                android:paddingRight="70dp"
+                android:paddingLeft="70dp"
+                android:id="@+id/btn_login"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/white"/>
+            
+            
+            
+            
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="80dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rellay2"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
+        android:layout_marginRight="20dp">
 
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_account" />
-
-
-
-        <EditText
-            android:id="@+id/input_email"
-            android:layout_width="match_parent"
+        <Switch
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/emailEmp"
-            android:textColor="@android:color/black"/>
+            android:text="Rester connecté"
+            android:textAllCaps="false"
+            android:paddingRight="70dp"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="70dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-light"
+            android:textSize="16sp"
+            android:id="@+id/laSwitch"/>
+    </RelativeLayout>
 
-        <EditText
-            android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/passwordEmp"
-            android:textColor="@android:color/black"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:padding="12dp"
-                android:text="@string/btnlogin"
-                android:background="@android:color/holo_red_light"/>
-            <CheckBox
-                android:id="@+id/stayConnected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/czkStay"
-                android:textColor="@android:color/black"
-                android:textDirection="ltr"/>
-
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>

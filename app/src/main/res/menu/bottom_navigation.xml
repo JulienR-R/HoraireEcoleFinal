@@ -4,14 +4,14 @@
     <item
         android:id="@+id/nav_creation_horaire"
         android:icon="@drawable/ic_schedule"
-        android:title="@string/admin_addhoraire"/>
+        android:title="Créer horaire"/>
     <item
         android:id="@+id/nav_creation_usager"
         android:icon="@drawable/ic_add"
-        android:title="@string/admin_addemploye"/>
+        android:title="Créer usager"/>
     <item
-        android:id="@+id/nav_all_horaire"
-        android:icon="@drawable/ic_schedule"
-        android:title="@string/admin_allhoraireview"/>
+        android:id="@+id/nav_script"
+        android:icon="@drawable/ic_script"
+        android:title="Lancer Attributions"/>
 
 </menu>
