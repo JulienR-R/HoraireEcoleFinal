@@ -60,6 +60,7 @@ private Toolbar toolbar;
         editHeureFin.setOnClickListener(RecupererHeureFin);
         editHeureDebut.setOnClickListener(RecupererHeureDebut);
         setToolbar();
+
     }
 
 
@@ -68,7 +69,7 @@ private Toolbar toolbar;
     public void setToolbar(){
         toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(R.string.title_admin_horaire_add);
+        setTitle("Créer horaire");
     }
 
     public void onBackPressed() {
@@ -79,7 +80,7 @@ private Toolbar toolbar;
     View.OnClickListener RecupererDate = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            DialogFragment datePicker = new DatePicker_Frag();
+            DialogFragment datePicker = new DatePickerFragment();
             datePicker.show(getSupportFragmentManager(), "date picker");
         }
     };
@@ -88,7 +89,7 @@ private Toolbar toolbar;
         @Override
         public void onClick(View view) {
 
-            DialogFragment timePicker = new TimePicker_Frag();
+            DialogFragment timePicker = new TimePickerFragment();
             timePicker.show(getSupportFragmentManager(), "heureDebut");
 
 
@@ -102,7 +103,7 @@ private Toolbar toolbar;
         @Override
         public void onClick(View view) {
 
-            DialogFragment timePicker = new TimePicker_Frag();
+            DialogFragment timePicker = new TimePickerFragment();
             timePicker.show(getSupportFragmentManager(), "heureFin");
         }
 
@@ -113,8 +114,11 @@ private Toolbar toolbar;
     View.OnClickListener Sauvegarder = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            notifyConfirm();
+
         }
+
+
+
     };
 
     @Override
@@ -160,9 +164,9 @@ private Toolbar toolbar;
                 .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         // ajouter à la base de donnée PERMANENTE, envoie aux employés messages pour faire leurs choix et retourner au menu principal
+                        
 
-
-
+                        
                         
                         finish();
                     }

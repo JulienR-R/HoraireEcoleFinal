@@ -74,7 +74,7 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
 
 
         activity = (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setTitle(R.string.title_admin_employe_edit);
+        activity.getSupportActionBar().setTitle("Modifier");
 
 
         editEmail = view.findViewById(R.id.edit_email);
@@ -110,7 +110,7 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
     View.OnClickListener SaveUser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(validateInfo()){
+
                 user.setPrenom(editPrenom.getText().toString());
                 user.setNom(editNom.getText().toString());
                 user.setSeniority(Integer.parseInt(editSenority.getText().toString()));
@@ -118,20 +118,12 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
                 UpdateUserAsync updateUserAsync = new UpdateUserAsync(AdminEmploye_EditDelete_Frag.this);
 
                 updateUserAsync.execute();
-             //   closeFragment();
-            }
+
+
 
         }
     };
 
-
-    private boolean validateInfo() {
-        boolean accept = false;
-        if(!editNom.getText().toString().isEmpty() || !editNom.getText().toString().isEmpty() || !editSenority.getText().toString().isEmpty() || !editEmail.getText().toString().isEmpty()){
-            accept = true;
-        }
-        return accept;
-    }
 
 
 
@@ -200,10 +192,11 @@ public class AdminEmploye_EditDelete_Frag extends Fragment {
 
             AdminEmploye_EditDelete_Frag activity = activityWeakReference.get();
             if (activity == null || activity.isResumed()) {
+                mListener.onFragmentInteraction();
                 return;
             }
-            mListener.onFragmentInteraction();
-     //       getActivity().getSupportFragmentManager().beginTransaction().remove(mActivity).commit();
+
+
 
         }
 

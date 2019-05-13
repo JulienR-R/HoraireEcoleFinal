@@ -1,7 +1,5 @@
 package com.example.horaire.admin;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
@@ -9,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.horaire.R;
@@ -19,7 +18,10 @@ import java.text.SimpleDateFormat;
 
 public class AdminHoraire_Adapter extends ListAdapter<PlageHoraire, AdminHoraire_Adapter.HoraireHolder> {
 
-    private OnItemClickListener listener;
+
+
+
+    private AdminHoraire_Adapter.OnItemClickListener listener;
 
     public AdminHoraire_Adapter() {
         super(DIFF_CALLBACK);
@@ -54,15 +56,13 @@ public class AdminHoraire_Adapter extends ListAdapter<PlageHoraire, AdminHoraire
     @Override
     public void onBindViewHolder(@NonNull HoraireHolder holder, int position) {
         PlageHoraire plageHoraire = getItem(position);
+        holder.textViewDescription.setText("Description: " + plageHoraire.getDescription());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        Context temp = holder.itemView.getContext();
-        holder.textViewDescription.setText(temp.getString(R.string.descriptionHoraire) + " : " + plageHoraire.getDescription());
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-
-        holder.textViewDate.setText(temp.getString(R.string.dateHoraire) + " : " + dateFormat.format(plageHoraire.getDate()));
-        holder.textViewHeureDebut.setText(temp.getString(R.string.timeBeginHoraire) + " : " + String.valueOf(plageHoraire.getHeureDebut()));
-        holder.textViewHeureFin.setText(temp.getString(R.string.timeEndHoraire) + " : " + String.valueOf(plageHoraire.getHeureFin()));
-        holder.textViewEffectif.setText(temp.getString(R.string.nbEmployeHoraire) + " : " + String.valueOf(plageHoraire.getEffectif()));
+        holder.textViewDate.setText("Date: " + dateFormat.format(plageHoraire.getDate()));
+        holder.textViewHeureDebut.setText("Heure de debut: " + String.valueOf(plageHoraire.getHeureDebut()));
+        holder.textViewHeureFin.setText("Heure de fin: " + String.valueOf(plageHoraire.getHeureFin()));
+        holder.textViewEffectif.setText("Effectif: " + String.valueOf(plageHoraire.getEffectif()));
 
     }
 
@@ -81,6 +81,7 @@ public class AdminHoraire_Adapter extends ListAdapter<PlageHoraire, AdminHoraire
         private TextView textViewHeureDebut;
         private TextView textViewHeureFin;
         private TextView textViewEffectif;
+        private ImageView imageView;
 
 
         public HoraireHolder(View itemView) {
@@ -90,6 +91,7 @@ public class AdminHoraire_Adapter extends ListAdapter<PlageHoraire, AdminHoraire
             textViewHeureDebut = itemView.findViewById(R.id.text_view_heure_debut );
             textViewHeureFin = itemView.findViewById(R.id.text_view_heure_fin );
             textViewEffectif = itemView.findViewById(R.id.text_view_effectif );
+            imageView = itemView.findViewById(R.id.image_edit);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,11 +102,22 @@ public class AdminHoraire_Adapter extends ListAdapter<PlageHoraire, AdminHoraire
                     }
                 }
             });
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onCreateClick(getItem(position));
+                    }
+                }
+            });
+
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(PlageHoraire plageHoraire);
+        void onCreateClick(PlageHoraire plageHoraire);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

@@ -1,7 +1,5 @@
 package com.example.horaire.admin;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
@@ -14,9 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import com.example.horaire.R;
 import com.example.horaire.database.User;
 
-import java.util.ResourceBundle;
-
 public class AdminEmploye_Adapter extends ListAdapter<User, AdminEmploye_Adapter.EmpHolder> {
+
+
+
 
     private OnItemClickListener listener;
 
@@ -52,11 +51,10 @@ public class AdminEmploye_Adapter extends ListAdapter<User, AdminEmploye_Adapter
     @Override
     public void onBindViewHolder(@NonNull EmpHolder holder, int position) {
         User currentUser = getItem(position);
-        Context temp = holder.itemView.getContext();
-        holder.textViewNom.setText(temp.getString(R.string.nomEmp) + " : " + currentUser.getNom());
-        holder.textViewPrenom.setText(temp.getString(R.string.prenomEmp) + " : " + currentUser.getPrenom());
-        holder.textViewEmail.setText(temp.getString(R.string.emailEmp) + " : " + currentUser.getUserId());
-        holder.textViewSenority.setText(temp.getString(R.string.seniorityEmp) + " : " + String.valueOf(currentUser.getSeniority()));
+        holder.textViewNom.setText("Nom: " + currentUser.getNom());
+        holder.textViewPrenom.setText("Prenom: " + currentUser.getPrenom());
+        holder.textViewEmail.setText("Email: " + currentUser.getUserId());
+        holder.textViewSenority.setText("Senority: " + String.valueOf(currentUser.getSeniority()));
 
     }
 

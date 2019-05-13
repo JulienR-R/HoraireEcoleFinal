@@ -20,13 +20,13 @@ public class AdminEmployeCreationActivity extends AppCompatActivity {
     private Spinner createSenority;
     private Spinner createAdmin;
     private Button btnSave;
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_emp_creation);
+        setContentView(R.layout.admin_employe_create_user);
         createDescription = findViewById(R.id.create_prenom);
         createNom = findViewById(R.id.create_nom);
         createEmail = findViewById(R.id.create_email);
@@ -46,6 +46,16 @@ public class AdminEmployeCreationActivity extends AppCompatActivity {
         }
     };
 
+
+
+
+    public void setToolbar(){
+        toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Créer usager");
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -54,19 +64,10 @@ public class AdminEmployeCreationActivity extends AppCompatActivity {
                 return true;
             default: return false;
         }
-    }
 
-    public void setToolbar(){
-        toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(R.string.title_admin_employe_add);
-    }
 
-    public void onBackPressed() {
-        //save TEMP data
-        finish();
-    }
 
-}
+
+}}
 
 

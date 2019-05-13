@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 
@@ -25,11 +24,11 @@ public class AdminEmployeViewActivity extends AppCompatActivity implements Admin
     private RecyclerView recyclerView;
     private List<User> usersList;
     private AdminEmploye_Adapter adapter = new AdminEmploye_Adapter();
-    Toolbar toolbar;
+
 
 
     public void onCreate(Bundle savedInstanceState) {
-    //    ListView list;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_emp_view);
 
@@ -48,28 +47,7 @@ public class AdminEmployeViewActivity extends AppCompatActivity implements Admin
 
 
 
-      /*
-       setContentView(R.layout.admin_employeview_view);
 
-        list = findViewById(R.id.list_employes);
-        String[] values = new String[] { "George", "Mickael", "Robert",
-                "Jean", "Elizabeth", "Thérèse" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.admin_employeview_item, R.id.itemEmployeName, values);
-
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemClicked = (String) parent.getItemAtPosition(position);
-                Intent intentEmployeDetail = new Intent(AdminEmployeViewActivity.this, EmployeDetailActivity.class);
-                //put extra to get the horaire
-                startActivity(intentEmployeDetail);
-            }
-        });
-
-        */
         setToolbar();
 
 
@@ -140,7 +118,7 @@ public class AdminEmployeViewActivity extends AppCompatActivity implements Admin
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right );
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.fragment_container, fragment_editDelete_emp, "FRAGMENT_ADD_EMP").commit();
+        fragmentTransaction.add(R.id.fragment_emp_modify, fragment_editDelete_emp, "FRAGMENT_MODIFY_EMP").commit();
     }
 
     @Override
@@ -161,6 +139,7 @@ public class AdminEmployeViewActivity extends AppCompatActivity implements Admin
 
                 fragmentManager.popBackStack();
 
+                this.getSupportActionBar().setTitle("Liste d'employés");
                 adapter.submitList(usersList);
                 recyclerView.setAdapter(adapter);
 
@@ -191,6 +170,12 @@ public class AdminEmployeViewActivity extends AppCompatActivity implements Admin
 
         }
     }
+
+
+
+
+
+
 
 
     public void setToolbar(){

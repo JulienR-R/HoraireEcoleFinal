@@ -14,9 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.example.horaire.LoginActivity;
+import com.example.horaire.Login;
 import com.example.horaire.R;
 
 
@@ -96,7 +95,7 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
 
                     break;
 
-                case R.id.nav_all_horaire:
+                case R.id.nav_script:
 
                     break;
             }
@@ -118,9 +117,7 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            /*case R.id.action_edit_password:
-                editPassword();
-                return true;*/
+
             case R.id.action_logout:
                 notifyLogout();
                 return true;
@@ -146,28 +143,11 @@ public class AdminCenterActivity  extends AppCompatActivity implements View.OnCl
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("stayConnected",false);
                         editor.apply();
-                        intent = new Intent(AdminCenterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                      Intent i = new Intent(AdminCenterActivity.this, Login.class);
+                      startActivity(i);
                     }
                 }).create().show();
     }
-
-    /*public void editPassword(){
-        final EditText newpassword = new EditText(this);
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.title_edit_password)
-                .setMessage(R.string.message_edit_password)
-                .setNegativeButton(R.string.btnCancel, null)
-                .setView(newpassword)
-                .setPositiveButton(R.string.btnConfirm, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {*/
-                        // si password n'est pas le même qu'actuel et qu'il n'est pas vide
-                        // changer password dans la base de donnée
-                        // sinon, toast expliquant l'erreur (Tu as oublié de mettre un mot de passe)
-                    /*}
-                }).create().show();
-    }*/
 
 
 

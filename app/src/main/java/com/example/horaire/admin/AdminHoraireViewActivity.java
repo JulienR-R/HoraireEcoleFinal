@@ -3,10 +3,14 @@ package com.example.horaire.admin;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 
 
@@ -20,10 +24,9 @@ import java.util.List;
 /**
  * Created by 201663676 on 2019-04-23.
  */
-public class AdminHoraireViewActivity extends AppCompatActivity{
-    Toolbar toolbar;
- //   ArrayAdapter<String> adapter;
-   // ListView list;
+public class AdminHoraireViewActivity extends AppCompatActivity implements AdminHoraire_EditDelete_Frag.OnFragmentInteractionListener{
+   private Toolbar toolbar;
+
 
     private RecyclerView recyclerView;
     private List<PlageHoraire> plageHoraireList;
@@ -43,33 +46,101 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
         populateHoraireList.execute();
 
 
-        /*
-        setContentView(R.layout.admin_horaireview_view);
-        list = findViewById(R.id.listPlage);
 
-
-
-
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(AdminHoraireViewActivity.this);
-                List<PlageHoraire> plageHoraires = horairesDataBase.plageHoraireAccess().getPlageHoraires();
-                List<String> listPlageTitle = new ArrayList<String>();
-                for (PlageHoraire plageHoraire:plageHoraires) {
-                    listPlageTitle.add(plageHoraire.toString());
-                }
-                adapter = new ArrayAdapter<String>(AdminHoraireViewActivity.this,
-                        android.R.layout.simple_list_item_1,android.R.id.text1,listPlageTitle);
-
-                list.setAdapter(adapter);
-            }
-        }).start();
-
-        */
         setToolbar();
+
+        horairesAdapter.setOnItemClickListener(new AdminHoraire_Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(PlageHoraire plageHoraire) {
+                //Implementez logique
+            }
+
+            @Override
+            public void onCreateClick(PlageHoraire plageHoraire) {
+                openFragment(plageHoraire);
+            }
+
+
+        });
+
+
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.RIGHT){
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                DeletePlageHoraireAsync deletePlageHoraireAsync = new DeletePlageHoraireAsync(viewHolder.getAdapterPosition());
+                deletePlageHoraireAsync.execute();
+            }
+        }).attachToRecyclerView(recyclerView);
+
+    }
+
+    @Override
+    public void onFragmentInteraction() {
+
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+        if (fragmentManager.getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+
+            fragmentManager.popBackStack();
+
+            this.getSupportActionBar().setTitle("Liste d'horaires");
+            horairesAdapter.submitList(plageHoraireList);
+            recyclerView.setAdapter(horairesAdapter);
+
+
+        }
+    }
+
+    private class DeletePlageHoraireAsync extends AsyncTask<Void, Void, Void>{
+
+        private int mPosition;
+
+        public DeletePlageHoraireAsync(int position) {
+
+            mPosition = position;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            HorairesDataBase horairesDataBase = HorairesDataBase.getInstance(AdminHoraireViewActivity.this);
+            horairesDataBase.plageHoraireAccess().deletePlageHoraire(horairesAdapter.getPlageAt(mPosition));
+            plageHoraireList = horairesDataBase.plageHoraireAccess().getPlageHoraires();
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            horairesAdapter.submitList(plageHoraireList);
+            recyclerView.setAdapter(horairesAdapter);
+
+        }
+    }
+
+    private void openFragment(PlageHoraire plageHoraire) {
+        AdminHoraire_EditDelete_Frag admin_horaireEditDeleteFrag =  AdminHoraire_EditDelete_Frag.newInstance(plageHoraire);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right );
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.add(R.id.fragment_horaire_modify, admin_horaireEditDeleteFrag, "FRAGMENT_MODIFY_HORAIRE").commit();
     }
 
 
@@ -101,7 +172,7 @@ public class AdminHoraireViewActivity extends AppCompatActivity{
         setTitle(R.string.title_admin_horaire);
     }
 
-    public void onBackPressed() {finish(); }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
