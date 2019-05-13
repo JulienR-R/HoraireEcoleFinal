@@ -85,7 +85,11 @@ public class AttributionPlageHoraire implements Parcelable {
         return titre;
     }
 
-    public String toString(final Context ct) {
+    public String details() {
+        return result;
+    }
+
+    public void infos(final Context ct){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -98,7 +102,6 @@ public class AttributionPlageHoraire implements Parcelable {
                 titre = plageHoraire.getDescription();
             }
         }).start();
-        return result;
     }
 
 }
