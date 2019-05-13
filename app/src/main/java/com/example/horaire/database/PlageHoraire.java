@@ -40,16 +40,6 @@ public class PlageHoraire implements Parcelable {
         setActif(true);
     }
 
-    public PlageHoraire(String description, Date date, Time heureDebut, Time heureFin, int effectif, int placesDisponibles, boolean actif) {
-        this.description = description;
-        this.date = date;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.effectif = effectif;
-        this.placesDisponibles = placesDisponibles;
-        this.actif = actif;
-    }
-
     protected PlageHoraire(Parcel in) {
         _id = in.readLong();
         description = in.readString();
